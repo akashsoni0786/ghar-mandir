@@ -25,7 +25,7 @@ function Page(props: DIProps) {
 
   const controller = new AbortController();
   const [loading, setLoading] = useState(false);
-  const [pujaData, setPujaData] = useState(undefined);
+  const [pujaData, setPujaData] = useState<any>(undefined);
   const getPujaDetailsById = () => {
     setLoading(true);
     if (request)
