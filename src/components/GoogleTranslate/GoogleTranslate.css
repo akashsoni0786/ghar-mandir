@@ -1,0 +1,76 @@
+.gtranslate_wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.gtranslate_wrapper select {
+  background: #8b0000
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  color: #fff;
+  padding: 8px 30px 8px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  width: 85px;
+  background-size: 12px;
+}
+
+.gtranslate_wrapper select:hover {
+  background-color: #a52a2a;
+}
+
+.gtranslate_wrapper select:focus {
+  box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
+}
+
+.gtranslate_wrapper select option {
+  background: #fff;
+  color: #333;
+  padding: 10px;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+.gtranslate_wrapper select::-webkit-scrollbar {
+  width: 8px;
+}
+
+.gtranslate_wrapper select::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.gtranslate_wrapper select::-webkit-scrollbar-thumb {
+  background: #8b0000;
+  border-radius: 4px;
+}
+
+.gtranslate_wrapper select::-webkit-scrollbar-thumb:hover {
+  background: #a52a2a;
+}
+.gt_float_switcher .gt-selected .gt-current-lang {
+  padding: 5px 8px !important;
+  color: #333;
+  font-weight: bold;
+  min-width: 110px;
+  background-color: #af1e2e;
+}
+.gt-lang-code {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+}
+.gt_float_switcher img {
+  width: 20px !important;
+}
+#gt_float_wrapper {
+  position: absolute !important;
+  top: -24px !important;
+  left: -100px !important;
+  box-shadow:none  !important;
+  border:none;
+}

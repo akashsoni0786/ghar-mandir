@@ -1,0 +1,122 @@
+.toast-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  pointer-events: none;
+  padding: 0 1rem; /* Add horizontal padding */
+  box-sizing: border-box;
+  
+  /* Default desktop position (bottom) */
+  bottom: 1rem;
+  top: auto;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 24rem; /* Limit toast width */
+  animation: slideUp 0.3s ease-out forwards;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+/* Mobile top positioning */
+@media (max-width: 640px) {
+  .toast-container {
+    /* top: 4.75rem; */
+    bottom: 4rem; /* Reset bottom position */
+    flex-direction: column; /* New toasts appear at bottom of stack */
+  }
+
+  /* Change animation to slide down on mobile */
+  .toast {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+}
+
+.toast-icon {
+  margin-right: 0.75rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex-grow: 1;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  padding-right: 0.5rem;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  margin-left: 0.75rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  font-size: 1.1rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* Toast Variants */
+.toast-error { background-color: #ef4444; }
+.toast-warn { background-color: #f59e0b; color: #1f2937; }
+.toast-success { background-color: #10b981; }
+.toast-info { background-color: #3b82f6; }
+
+/* Desktop animation (slides up from bottom) */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile animation (slides down from top) */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Exit animation */
+.toast-exit {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(20%) scale(0.95);
+  }
+}

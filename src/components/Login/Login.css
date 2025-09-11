@@ -1,0 +1,100 @@
+/* Login.css */
+.login-container {
+  padding: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.login-heading {
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.login-section {
+  margin-bottom: 20px;
+}
+
+.login-section-heading {
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 600;
+  /* margin-bottom: 8px; */
+}
+
+.login-section-subheading {
+  color: #808080;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.login-field {
+  margin-bottom: 16px;
+}
+
+.otp-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #D1D1D1;
+  outline: none;
+}
+
+.otp-input.error {
+  border-color: #AF1E2E;
+}
+
+.error-message {
+  color: #AF1E2E;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.otp-timer-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.otp-timer {
+  color: #888;
+  font-size: 14px;
+}
+
+.otp-resend-button {
+  background: none;
+  border: none;
+  color: #AF1E2E;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.login-button-container {
+  margin-top: 24px;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 16px;
+  }
+  
+  .login-heading {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}

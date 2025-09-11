@@ -1,0 +1,44 @@
+.skeletonLine,
+.skeletonAvatar,
+.skeletonBox,
+.skeletonCard {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonLine {
+  display: block;
+}
+
+.skeletonAvatar {
+  border-radius: 50%;
+}
+
+.skeletonBox {
+  border-radius: 8px;
+}
+
+.skeletonCard {
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeletonParagraph {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

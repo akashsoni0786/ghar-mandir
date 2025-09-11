@@ -1,0 +1,20 @@
+"use client";
+import { PageWrapper } from "@/app/Routes";
+import FullPageLoader from "@/components/Common/Loadings/FullPageLoader";
+import dynamic from "next/dynamic";
+const ChadhavaComponent = dynamic(
+  () => import("../../../components/Chadhava/ChadhavaPage"),
+  {
+    loading: () => <FullPageLoader />,
+    ssr: false,
+  }
+);
+
+const Chadhava = () => {
+  return (
+    <PageWrapper>
+      <ChadhavaComponent />
+    </PageWrapper>
+  );
+};
+export default Chadhava;

@@ -1,0 +1,15 @@
+export const environment = {
+  prod: process.env.NEXT_PUBLIC_REACT_APP_PROD === "1",
+  API_ENDPOINT: process.env.NEXT_PUBLIC_APP_END_POINT,
+  Bearer: process.env.NEXT_PUBLIC_REACT_APP_BEARER as string,
+  Api_key: process.env.NEXT_PUBLIC_REACT_APP_API_KEY as string,
+  appCode: process.env.NEXT_PUBLIC_REACT_APP_APPCODE as string,
+  appTag: process.env.NEXT_PUBLIC_REACT_APP_APPTAG as string,
+  frontendUrl: process.env.NEXT_PUBLIC_REACT_APP_FRONTENDURL as string,
+  company_id: process.env.NEXT_PUBLIC_REACT_APP_COMPANY_ID as string,
+  razorpay_key : process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID as string,
+  auth_x_key : process.env.NEXT_PUBLIC_AUTH_KEY_ID as string,
+  pixel_key :process.env.FB_PIXEL_ID as string,
+  fb_key :process.env.FB_ACCESS_TOKEN as string,
+  paypal_client_id:process.env.PAYPAL_SECRET_CLIENT_ID as string,
+};

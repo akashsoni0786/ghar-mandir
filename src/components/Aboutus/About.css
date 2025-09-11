@@ -1,0 +1,553 @@
+.about-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 16px;
+  margin: 0 auto;
+}
+.about-header--name {
+  color: #101828;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+.about-gm {
+  background: #fffaee;
+  padding: 40px 16px;
+}
+.about-founder {
+  padding: 40px 0px;
+}
+
+.about-gm--box,
+.about-gm--paras {
+  display: flex;
+  flex-direction: column;
+}
+.about-gm--box {
+  gap: 12px;
+}
+.about-gm--paras {
+  gap: 6px;
+}
+
+.about-gm--heading,
+.about-heading {
+  color: #101828;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.4px;
+}
+.about-subheading {
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 24px;
+}
+.about-gm--para {
+  color: #101828;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+}
+.about-gm--para-bold {
+  font-weight: 500;
+}
+.about-founder--boxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding: 32px 0;
+}
+.about-founder--box {
+  display: flex;
+  width: 304px;
+  padding: 50px 16px;
+  border-radius: 16px;
+  background: #fffaee;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.about-founder--box-img {
+  width: 183px;
+  height: 183px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.about-founder--box-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 12px;
+}
+.about-founder--box-info-cofndr {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.8px;
+}
+.about-founder--box-info-name {
+  color: #4d4d4d;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.12px;
+}
+.about-founder--box-desc {
+  color: #666;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 145.455% */
+  letter-spacing: 0.72px;
+}
+.about-team--container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-team--container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-team--boxes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  scrollbar-width: none;
+  padding-left: 16px; /* Left padding for first card */
+  padding-right: 16px; /* Right padding for last card */
+}
+
+.about-team--boxes::-webkit-scrollbar {
+  display: none;
+}
+
+.about-team--card {
+  width: 280px;
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+}
+
+.about-team--card-img {
+  width: 280px;
+  height: 304px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.about-team--card-name {
+  color: #666;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.about-team--card-post {
+  color: #999;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.about-journeycount {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 24px 16px 16px 16px;
+  gap:16px;
+}
+.about-journeycount--card {
+  flex: 0 0 calc(33% - 16px);
+}
+.about-journeycount--card-name {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 125% */
+  margin-bottom: 4px;
+}
+.about-journeycount--card-count {
+  color: #af1e2e;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 57.143% */
+  margin-bottom: 4px;
+}
+.about-journeycount--card-desc {
+  color: #4d4d4d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px; /* 150% */
+}
+.about-prasads {
+  width: 100%;
+}
+.about-prasads--imgs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px;
+}
+.about-prasads--imgs-prasad {
+  flex: 1 0 calc(50% - 24px);
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.about-prasads--desc {
+  color: #1a1a1a;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31px;
+  padding: 16px;
+}
+.about-devotee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0;
+}
+.about-devotee--small {
+  width: 218px;
+  border-radius: 12px;
+  background: #fffaee;
+}
+.about-devotee--big {
+  width: 281px;
+  background: #fffaee;
+  border-radius: 12px;
+}
+.about-devotee--big-img {
+  width: 100%;
+  height: 60%;
+  border-radius: 12px;
+}
+.about-devotee--small-img {
+  border-radius: 12px;
+  height: 50%;
+  width: 100%;
+}
+.about-devotee--small-data,
+.about-devotee--big-data {
+  padding: 16px;
+}
+
+.about-devotee--comment,
+.about-devotee--comment-big {
+  color: #3e3e3e;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.48px;
+  padding: 16px 0;
+}
+.about-devotee--comment-big {
+  font-size: 14px;
+}
+.about-devotee--comment-name,
+.about-devotee--comment-name-big {
+  color: #3e3e3e;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+.about-devotee--comment-name-big {
+  font-size: 12px;
+}
+.about-roots {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 16px;
+  gap: 24px;
+}
+.about-roots--card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.about-roots--card-rev {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.about-roots--card-img {
+  flex: 0 0 calc(30% - 16px);
+  border-radius: 12px;
+  max-height: 270px;
+  max-width: 350px;
+  object-fit: cover;
+}
+.about-roots--card-content {
+  flex: 0 0 calc(65% - 40px);
+}
+.about-roots--card-heading {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 133.333% */
+}
+.about-roots--card-content-hr {
+  background: #af1e2e;
+  width: 207px;
+  height: 1px;
+  margin: 12px 0;
+}
+
+.about-roots--card-desc {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.about-emailsend {
+  display: flex;
+  align-items: center;
+}
+.about-subheading-btn {
+  margin-left: -10px;
+}
+@media (max-width: 1000px) {
+  .about-roots--card-img {
+    flex: 0 0 50%;
+  }
+  .about-roots--card-content {
+    flex: 0 0 50%;
+  }
+  .first-card {
+    padding-left: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .about-founder--boxes {
+    gap: 24px;
+    flex-direction: column;
+    padding: 16px 0;
+  }
+  .about-journeycount {
+    flex-direction: column;
+  }
+  .about-journeycount--card {
+    flex: 0 0 100%;
+  }
+  .about-prasads--imgs-prasad {
+    flex: 1 0 calc(50% - 12px);
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .about-devotee {
+    padding: 16px;
+    gap: 4px;
+  }
+  .about-devotee--small {
+    flex: 0 0 25%;
+  }
+  .about-devotee--big {
+    flex: 0 0 40%;
+  }
+
+  .about-roots--card {
+    flex-direction: column;
+  }
+  .about-roots--card-rev {
+    flex-direction: column-reverse;
+  }
+  .about-roots--card-img {
+    flex: 0 0 100%;
+  }
+  .about-roots--card-content {
+    flex: 0 0 100%;
+  }
+}
+@media (max-width: 550px) {
+  .about-devotee {
+    padding: 16px;
+    gap: 4px;
+  }
+  .about-devotee--small {
+    flex: 1 0 30%;
+  }
+  .about-devotee--big {
+    flex: 1 0 40%;
+  }
+  .about-devotee--comment {
+    font-size: 6px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11px; /* 162.5% */
+    letter-spacing: 0.24px;
+  }
+  .about-devotee--comment-big {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 150% */
+    letter-spacing: 0.4px;
+  }
+  .about-devotee--comment-name {
+    font-size: 4px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.16px;
+  }
+  .about-devotee--comment-name-big {
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 180% */
+    letter-spacing: 0.32px;
+  }
+  .about-roots {
+    padding: 24px 16px;
+  }
+  .about-roots--card-heading {
+    font-size: 14px;
+  }
+  .about-roots--card-desc {
+    font-size: 12px;
+  }
+  .about-roots--card-img {
+    min-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .about-header {
+    padding: 16px;
+  }
+  .about-header--name {
+    font-size: 18px;
+    line-height: normal;
+  }
+  .about-gm {
+    padding: 16px;
+  }
+  .about-founder {
+    padding: 16px 0;
+  }
+  .about-gm--heading,
+  .about-heading {
+    font-size: 14px;
+    letter-spacing: normal;
+  }
+  .about-subheading {
+    font-size: 12px;
+  }
+  .about-gm--para {
+    font-size: 12px;
+  }
+  .about-founder--box {
+    width: 206px;
+    display: flex;
+    padding: 40px 16px;
+    align-items: center;
+    gap: 0;
+    flex-direction: column;
+  }
+  .about-founder--box-img {
+    width: 115px;
+    height: 115px;
+  }
+  .about-founder--box-info {
+    margin-bottom: 8px;
+  }
+  .about-founder--box-info-cofndr {
+    font-size: 10px;
+    letter-spacing: 0.48px;
+  }
+  .about-founder--box-info-name {
+    font-size: 16px;
+    letter-spacing: 0.56px;
+  }
+  .about-founder--box-desc {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px; /* 133.333% */
+    letter-spacing: 0.4px;
+  }
+
+  .about-team--boxes {
+    gap: 12px;
+  }
+  .about-team--card {
+    width: 220px;
+    flex: 0 0 220px;
+  }
+  .about-team--card-img {
+    width: 220px;
+    height: 232px;
+  }
+
+  .about-team--card-name {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .about-team--card-post {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .about-journeycount--card-name {
+    font-size: 12px;
+  }
+  .about-journeycount--card-count {
+    font-size: 32px;
+  }
+  .about-journeycount--card-desc {
+    font-size: 12px;
+  }
+  .about-prasads--imgs {
+    gap: 6px;
+  }
+  .about-prasads--imgs-prasad {
+    flex: 0 0 calc(50% - 12px);
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .about-prasads--desc {
+    padding: 8px 16px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-roots--card-img {
+    min-width: none;
+    width: 100%;
+  }
+}

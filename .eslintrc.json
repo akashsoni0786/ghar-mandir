@@ -1,0 +1,26 @@
+{
+  "extends": ["next", "next/core-web-vitals"],
+  "rules": {
+    // Disable img element warnings
+    "@next/next/no-img-element": "off",
+
+    // Disable unescaped entities warnings
+    "react/no-unescaped-entities": "off",
+
+    // Configure any type warnings (you might want to keep these for better type safety)
+    "@typescript-eslint/no-explicit-any": "off",
+
+    // Disable unused vars warnings for className specifically
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_|className",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+
+    // Configure useEffect dependency checks
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}

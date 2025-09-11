@@ -1,0 +1,139 @@
+.filter-container {
+  margin-top: 20px;
+}
+.searchbar {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+  padding: 8px 16px 0 16px;
+}
+.searchbar-label {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 0 16px;
+}
+
+.searchbar-input {
+  max-width: 416px;
+  width: 416px;
+}
+.searchbar-adjust {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  padding: 2px 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  border-radius: 33px;
+  border: 1px solid #d1d1d1;
+  background: var(--bwb-100, #fff);
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 40px 0 40px 16px;
+}
+.filter-list {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  align-self: stretch;
+  justify-content: start;
+}
+.filter-label {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  min-width: 72px;
+  height: 32px;
+  padding: 4px;
+  justify-content: start;
+  align-items: center;
+}
+.filter-badges {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .filter {
+    gap: 14px;
+  }
+  .searchbar {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+  }
+  .searchbar-button {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-container {
+    margin: 10px 0;
+  }
+  .filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0 16px 16px;
+  }
+  .filter-badges {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    white-space: nowrap; /* Prevent items from wrapping */
+    gap: 8px; /* Optional: space between items */
+    padding-bottom: 4px; /* Optional: space for scrollbar if visible */
+  }
+
+  /* Hide scrollbar for Chrome/Safari */
+  .filter-badges::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Optional: Style for the badge items */
+  .filter-badges .badge {
+    flex: 0 0 auto; /* Prevent items from shrinking/growing */
+  }
+
+  .filter-label {
+    color: #1a1a1a;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    min-width: max-content;
+    height: 32px;
+    padding: 4px;
+    justify-content: start;
+    align-items: center;
+  }
+  .searchbar {
+    justify-content: space-between;
+  }
+  .searchbar-input {
+    /* max-width: 60%; */
+    width: 90%;
+  }
+}

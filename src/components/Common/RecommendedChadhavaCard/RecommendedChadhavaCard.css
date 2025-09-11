@@ -1,0 +1,120 @@
+.recom-card-participate {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 13rem;
+  min-width: 230px;
+  border-radius: var(--space-sm);
+  position: relative;
+  padding: 10px;
+}
+
+.card-participate--recom-header {
+  position: absolute;
+  width: 10rem;
+  top: var(--space-md);
+  left: var(--space-md);
+  border-radius: var(--space-xl);
+  padding: 0.25rem;
+  background-color: #00000059;
+  backdrop-filter: blur(var(--blur-intensity));
+  color: var(--light-gray);
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+}
+
+.recom-card-participate--data {
+  position: absolute;
+  text-align: start;
+  bottom: 4px;
+  padding: var(--space-xs);
+  width: 90%;
+}
+
+.card-participate--recom-title {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0%;
+  color: var(--light-x-gray);
+}
+
+.card-participate--offeringbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.card-participate--offering-recom-content {
+  padding-top: 4px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.card-participate--offering-recom-img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+}
+
+.card-participate--offering-recom-values {
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.48px;
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 100%;
+  background-color: var(--white);
+  margin: 0.75rem 0;
+  opacity: 0.4;
+}
+
+.card-participate--recom-temple,
+.card-participate--recom-date {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 8px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.card-participate--recom-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.card-participate--recom-actions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: var(--text-sm);
+  margin-top: 5px;
+  gap: 1rem;
+}
+
+.card-participate--recom-price {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .recom-card-participate {
+    height: 15rem;
+    max-width: 180px;
+  }
+  .card-participate--recom-title {
+    font-size: 12px;
+  }
+}

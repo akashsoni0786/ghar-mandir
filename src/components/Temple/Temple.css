@@ -1,0 +1,51 @@
+.heading {
+  color: #252424;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+}
+
+.temple-pandit--boxes,
+.event-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.temple-pandit--boxes > * {
+  flex: 0 0 calc(33.33% - 11px); /* 33.33% width minus gap */
+}
+.event-list > * {
+  flex: 0 0 calc(25% - 11px); /* 33.33% width minus gap */
+}
+.full-width-map {
+  width: 100%;
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+  /* Tablet - horizontal scroll */
+  .temple-pandit--boxes,
+  .event-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px; /* space for scrollbar */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  }
+
+  .temple-pandit--boxes > *,
+  .event-list > * {
+    flex: 0 0 80%; /* card width for tablet */
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile - slightly smaller cards */
+
+  .heading {
+    font-size: 16px;
+    line-height: normal;
+  }
+}

@@ -1,0 +1,108 @@
+/* Container Styles */
+.advice-box-container {
+  padding: 40px 0;
+  position: relative; /* For potential overlay effects */
+}
+
+/* Scrollable Box */
+.advice-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth; /* Smooth scrolling */
+  scroll-snap-type: x proximity; /* Optional: Snap scrolling */
+  padding-bottom: 16px; /* Increased space for scroll hint */
+  margin-bottom: -8px; /* Compensate for extra padding */
+  margin: 0 auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  max-width: 1200px;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.advice-box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Styles */
+
+.advice-1,
+.advice-2 {
+  height: 325px;
+  flex: 0 0 auto;
+  min-width: 225px; /* Mobile-first fixed width */
+  max-width: 100%; /* Prevent overflow */
+  width: 225px; /* Default mobile width */
+  padding: 26px 26px 0 26px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: 16px; /* Optional: Snap scrolling */
+  /* Prevent content overflow */
+  overflow-y: auto;
+  border-radius: 12px;
+  /* background: linear-gradient(90deg, #781800 0%, #96280c 32.3%, #d64724 100%); */
+  /* border-radius: 12px; */
+  position: relative;
+}
+.advice-1 {
+  margin-left: 16px;
+  background: linear-gradient(transparent 0%, #000000b3 75%),
+    url("https://d28wmhrn813hkk.cloudfront.net/uploads/1749194146199-ye4mc8.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.advice-2 {
+  margin-right: 16px;
+  background: linear-gradient(transparent 0%, #000000b3 75%),
+    url("https://d28wmhrn813hkk.cloudfront.net/uploads/1749194146962-cw1uph.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.advice-data {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  position: absolute;
+  bottom: 16px;
+  left: 0%;
+  padding: 0 14px;
+}
+.advice-svg {
+  position: absolute;
+  bottom: 0;
+  left: 34%;
+}
+
+/* Desktop Behavior (min-width: 768px) */
+@media (min-width: 768px) {
+  .advice-1,
+  .advice-2 {
+    width: 100%; /* Flexible width */
+    max-width: 496px; /* Max card width */
+  }
+}
+@media (max-width: 768px) {
+  .advice-box-container {
+    padding: 16px 0;
+  }
+  .advice-data {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .advice-svg {
+    position: absolute;
+    bottom: 0;
+    left: 34px;
+  }
+}
+@media (max-width: 480px) {
+  .advice-box {
+    justify-content: start;
+  }
+}

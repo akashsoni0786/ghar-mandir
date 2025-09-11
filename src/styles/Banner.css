@@ -1,0 +1,203 @@
+.puja-banner {
+  display: flex;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 0;
+  border-radius: 16px;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.banner-content {
+  flex: 0.6;
+  padding: 46px 0 46px 46px;
+  z-index: 2;
+  position: relative;
+}
+
+.heading {
+  color: #fb0;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: ellipsis;
+}
+
+.temple-date {
+  color: #f2f2f2;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.temple-date-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+}
+.temple-date-icon {
+  color: #fff;
+}
+.benefits {
+  display: flex;
+  gap: 24px;
+  margin: 20px 0;
+  flex-wrap: nowrap;
+}
+.benefit-box {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.benefit {
+  color: #ffc107;
+  background-color: #1f3d1f;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 0.9rem;
+  width: 40px;
+}
+.benefit-box-label {
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.benefit-box-icon {
+  border-radius: 50%;
+}
+.vertical-gap {
+  margin: 20px 0 20px 0;
+}
+.banner-image {
+  position: relative;
+  flex: 1.5;
+  min-width: 380px;
+}
+
+.banner-image img {
+  height: 370.8px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-gradient-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    451deg,
+    #1a1a1a 0.64%,
+    rgba(19, 33, 2, 0) 100.49%
+  );
+  z-index: 1;
+}
+@media (max-width: 990px) {
+  .puja-banner {
+    position: relative;
+    height: 300px;
+    gap: 10px;
+    padding: 0;
+  }
+  .banner-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .heading {
+    color: #fb0;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    margin-bottom: 5px;
+    white-space: wrap;
+    overflow: visible;
+    text-overflow: ellipsis;
+  }
+  .temple-date {
+    text-shadow: 0.5px 0.5px 0px rgba(0, 0, 0, 0.25);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 5px;
+    gap: 4px;
+  }
+  .benefits {
+    display: flex;
+    gap: 8px;
+    margin: 4px 0;
+    flex-wrap: wrap;
+  }
+
+  .image-gradient-overlay {
+    pointer-events: none;
+  }
+}
+@media (max-width: 480px) {
+  .puja-banner {
+    position: relative;
+    height: max-content;
+    gap: 10px;
+    padding: 0;
+  }
+  .banner-content {
+    padding: 20px;
+  }
+  .heading {
+    max-width: 185px;
+    font-size: 16px;
+  }
+  .banner-image {
+    object-fit: cover;
+  }
+  .banner-image img {
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .benefit {
+    /* width: max-content; */
+    /* padding: 5px 9px 5px 9px; */
+    width: max-content;
+  }
+  .benefit-box-icon {
+    width: 18px;
+    border-radius: 50%;
+  }
+  .temple-date-icon {
+    width: 16px;
+  }
+}
+@media (max-width: 370px) {
+  .puja-banner {
+    position: relative;
+    height: max-content;
+    gap: 10px;
+    padding: 0;
+    max-width: 320px;
+  }
+}

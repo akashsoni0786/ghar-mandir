@@ -1,0 +1,77 @@
+.contact {
+  margin: 0 auto 40px auto;
+}
+.contact-header--name {
+  color: #000;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 44px;
+  cursor: pointer;
+}
+.contact-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.contact-heading--head {
+  color: #101828;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 44px; /* 122.222% */
+  letter-spacing: -0.72px;
+  margin-bottom: 12px;
+}
+.contact-heading--desc {
+  color: #667085;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 150% */
+}
+.contact-form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.contact-reply {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.56px;
+  max-width: 480px;
+  margin-top: -14px;
+}
+.error-message {
+  color: #af1e2e;
+  font-size: 12px;
+  margin-top: -18px;
+}
+@media (max-width: 480px) {
+  .contact-heading {
+    display: none;
+  }
+  .contact-form {
+    max-width: none;
+  }
+  .contact-header--name {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+  }
+
+  .contact-reply {
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    max-width: none;
+  }
+}

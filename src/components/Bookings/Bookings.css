@@ -1,0 +1,205 @@
+.booking-header--name {
+  color: #000;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 44px;
+}
+.booking-boxes {
+  border-top: 1px solid #e0e0e0;
+  padding: 16px 0;
+}
+.booking-boxes--heading {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+.booking-boxes--container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.booking-boxes--container  > * {
+  flex: 0 0 calc(33.33% - 12px);
+  box-sizing: border-box;
+}
+.booking-boxes--item {
+  flex: 0 0 calc(33.333% - 16px);
+  border-right: 1px solid #e0e0e0;
+  padding: 0 16px;
+  cursor: pointer;
+  margin: 16px 0;
+}
+.booking-boxes--item.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.booking-boxes--item:last-child {
+  border-right: none;
+}
+.booking-boxes--item--img-container {
+  position: relative;
+}
+
+.image-spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.booking-boxes--item--img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  height: 170px;
+}
+
+.booking-boxes--item--details {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin: 12px 0 6px 0;
+}
+.booking-boxes--item--status {
+  display: flex;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  margin-top: 2px;
+  width: max-content;
+}
+.active {
+  background: rgba(114, 184, 54, 0.16);
+  color: #5ba61a;
+}
+.completed {
+  background: rgba(214, 71, 36, 0.16);
+  color: #d64724;
+}
+.booking-boxes--item--status--text {
+  font-size: 14px;
+  font-weight: 500;
+}
+.booking-boxes--item--name {
+  color: #1a1a1a;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.booking-boxes--item--temple-date {
+  display: flex;
+  gap: 0px;
+  align-items: start;
+  flex-direction: column;
+}
+.booking-boxes--item--temple,
+.booking-boxes--item--date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+.booking-boxes--item--prasad {
+  margin: 16px 0 16px 0;
+  padding-top: 16px;
+  border-top: 1px solid #eae8e8;
+}
+.booking-boxes--item--prasad-heading {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 6px;
+}
+.booking-boxes--item--prasad-data {
+  display: flex;
+  gap: 4px;
+  align-items: start;
+}
+.booking-boxes--item--prasad-content {
+  color: #5ba61a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.booking-boxes--item--prasad-date {
+  color: #808080;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}
+@media (max-width: 768px) {
+  .booking-boxes--container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .booking-boxes--item {
+    flex: 0 0 100%;
+    border-right: none;
+    border-bottom: 1px solid #eae8e8;
+    padding: 0;
+    padding-bottom: 16px;
+  }
+  .booking-boxes--item:last-child {
+    border-bottom: none;
+    border-right: none;
+  }
+  .booking-boxes--item--img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    height: 200px;
+  }
+  .booking-boxes--item--name {
+    font-size: 16px;
+    line-height: normal; /* 140% */
+  }
+  .booking-boxes--item--status--text {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .booking-header--name {
+    font-size: 20px;
+    line-height: normal;
+  }
+  .booking-boxes--heading {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .booking-boxes--item--status {
+    display: flex;
+    padding: 2px 6px;
+    align-items: center;
+    gap: 2px;
+    border-radius: 4px;
+  }
+  .booking-boxes--item--status--text {
+    font-size: 10px;
+  }
+  .booking-boxes--item--name {
+    font-size: 14px;
+  }
+  .icon-size {
+    width: 20px;
+  }
+  .booking-boxes--item--temple,
+  .booking-boxes--item--date {
+    font-size: 12px;
+  }
+}

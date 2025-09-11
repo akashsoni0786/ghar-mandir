@@ -1,0 +1,38 @@
+.language-options {
+  padding: 0;
+  /* border:1px solid var(--primary-color) */
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.language-item:hover {
+  background: #f8f8f8;
+}
+
+.language-name.active {
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.language-name {
+  color: #666;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.language-native {
+  color: #666;
+  font-style: italic;
+}
+

@@ -1,0 +1,48 @@
+.pujadetailsskeleton-hero {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 32px 16px;
+}
+.pujadetailsskeleton-hero--img {
+  flex: 1 0 50%;
+  height: 400px;
+  width: 100%;
+}
+.pujadetailsskeleton-hero--data {
+  flex: 1 0 50%;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pujadetailsskeleton-hero--data-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .pujadetailsskeleton-hero {
+    flex-direction: column;
+  }
+  .pujadetailsskeleton-hero--img {
+    flex: 1 0 100%;
+    min-height: 400px;
+  }
+  .pujadetailsskeleton-hero--data {
+    flex: 1 0 100%;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pujadetailsskeleton-hero--img {
+    border-radius: 8px;
+    flex: 0 0 calc(100% - 32px);
+    min-width: calc(100% - 32px);
+    min-height: 180px;
+  }
+}

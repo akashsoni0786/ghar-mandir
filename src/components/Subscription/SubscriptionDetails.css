@@ -1,0 +1,48 @@
+.subscription-data {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  background-color: #ffebe6;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.subscription-data--img {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.subscription-data--details {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.subscription-data--details-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.subscription-data--details-price {
+  font-size: 14px;
+  font-weight: 300;
+  color: #333;
+}
+@media (max-width: 480px) {
+  .subscription-data--details-name {
+    font-size: 14px;
+    line-height: normal;
+  }
+  .subscription-data--details-price {
+    font-size: 12px;
+  }
+  .subscription-steps {
+    margin-bottom:48px
+  }
+}
+@media (max-width: 360px) {
+  .subscription-data--img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+  }
+}
