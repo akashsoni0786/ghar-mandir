@@ -1,11 +1,4 @@
 import "./About.css";
-import D1 from "../../assets/images/devotee.png";
-import D2 from "../../assets/images/devotee_2.png";
-import D3 from "../../assets/images/devotee_3.png";
-import Root1 from "../../assets/images/root-1.png";
-import Root2 from "../../assets/images/root-2.png";
-import Root3 from "../../assets/images/root-3.png";
-import Apurva from "../../assets/images/apurva.jpg";
 import { LinkedIcon, ThumbIcon } from "@/assets/svgs";
 import Image from "next/image";
 import { TextButton } from "../Common/Buttons";
@@ -15,7 +8,21 @@ import { updateMobFooter } from "@/store/slices/commonSlice";
 import { DIProps } from "@/core/DI.types";
 import { DI } from "@/core/DependencyInjection";
 
-const About = ({dispatch}:DIProps) => {
+const D1 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599820515-gchegi.webp";
+const D2 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599841949-3wfr1b.webp";
+const D3 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599866333-h2h3gl.webp";
+const Root1 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599892078-o5ihul.webp";
+const Root2 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599914467-5i22p.webp";
+const Root3 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599935294-gaqkof.webp";
+const Apurva =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599784176-ykizp4.webp";
+const About = ({ dispatch }: DIProps) => {
   const t = useTrans("");
   const handleEmailClick = () => {
     const emailUrl = `mailto:hiring@gharmandir.in?subject=${encodeURIComponent(
@@ -23,7 +30,7 @@ const About = ({dispatch}:DIProps) => {
     )}&body=${encodeURIComponent("")}`;
     window.location.href = emailUrl;
   };
-   useEffect(() => {
+  useEffect(() => {
     if (dispatch)
       dispatch(
         updateMobFooter({
@@ -89,7 +96,7 @@ const About = ({dispatch}:DIProps) => {
             </p> */}
           </div>
           <div className="about-founder--box">
-            <Image
+            <img
               className="about-founder--box-img"
               src={Apurva}
               alt="apurva-shah"
@@ -245,7 +252,7 @@ const About = ({dispatch}:DIProps) => {
         <h4 className="about-heading ph-16">{t("ROOTED_IN_HINDUISM")}</h4>
         <div className="about-roots ph-16">
           <div className="about-roots--card">
-            <Image className="about-roots--card-img" src={Root3} alt="mandir" />
+            <img className="about-roots--card-img" src={Root3} alt="mandir" />
             <div className="about-roots--card-content">
               <h5 className="about-roots--card-heading">
                 {t("WHO_WE_ARE_HEADING")}
@@ -265,11 +272,11 @@ const About = ({dispatch}:DIProps) => {
                 {t("OUR_PHILOSOPHY_DESC")}
               </p>
             </div>
-            <Image className="about-roots--card-img" src={Root2} alt="mandir" />
+            <img className="about-roots--card-img" src={Root2} alt="mandir" />
           </div>
 
           <div className="about-roots--card">
-            <Image className="about-roots--card-img" src={Root1} alt="mandir" />
+            <img className="about-roots--card-img" src={Root1} alt="mandir" />
             <div className="about-roots--card-content">
               <h5 className="about-roots--card-heading">
                 {t("CULTURE_WE_CHERISH_HEADING")}
@@ -289,7 +296,7 @@ const About = ({dispatch}:DIProps) => {
         </h4>
         <div className="about-devotee">
           <div className="about-devotee--small">
-            <Image
+            <img
               src={D3}
               alt="mini-devotee"
               className="about-devotee--small-img"
@@ -304,7 +311,7 @@ const About = ({dispatch}:DIProps) => {
           </div>
 
           <div className="about-devotee--big">
-            <Image
+            <img
               src={D1}
               alt="mini-devotee"
               className="about-devotee--big-img"
@@ -321,7 +328,7 @@ const About = ({dispatch}:DIProps) => {
           </div>
 
           <div className="about-devotee--small">
-            <Image
+            <img
               src={D2}
               alt="mini-devotee"
               className="about-devotee--small-img"

@@ -127,16 +127,16 @@ const Account = ({ redux, dispatch, toast, request, location }: DIProps) => {
               save_event(redux?.auth?.authToken, location ?? "Home", [
                 eventbtn,
               ]);
+              pushToDataLayerWithoutEvent({
+                event: "user_logout",
+                user_id: redux?.auth?.authToken || "",
+                // name: redux?.auth?.userName || redux?.auth?.name,
+                mobile: redux?.auth?.mobile || redux?.auth?.mobileNo || "",
+              });
               const temp = [...services];
               temp[idx].loading = true;
               setServices(temp);
               setCurrency();
-              pushToDataLayerWithoutEvent({
-                event: "user_logout",
-                user_id: redux?.auth?.authToken,
-                // name: redux?.auth?.userName || redux?.auth?.name,
-                mobile: redux?.auth?.mobile || redux?.auth?.mobileNo,
-              });
               toast?.show("Logged out successfully", "success");
               route.push("/");
               resetReduxStore();

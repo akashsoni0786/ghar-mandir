@@ -13,7 +13,7 @@ import { DetailsProvider } from "../PujaDetails/PoojaDetailsContext";
 import { pageview_event, save_event } from "@/constants/eventlogfunctions";
 import { videoSource } from "@/commonvaribles/constant_variable";
 import { updateVideo } from "@/store/slices/commonSlice";
-
+import ChadhavaDetailsSkeleton from "../../skeletons/chadhava/ChadhavaDetailsSkeleton/ChadhavaDetailsSkeleton";
 const {
   GET: { chadhaava_getchadhaavaById },
 } = urlFetchCalls;
@@ -24,7 +24,7 @@ function ChadhavaPage(props: DIProps) {
   const chadhava_id: any = params?.chadhava_id;
   const controller = new AbortController();
   const [loading, setLoading] = useState(false);
-  const [chadhavaData, setChadhavaData] = useState([]);
+  const [chadhavaData, setChadhavaData] = useState<any>(undefined);
   const showPrasad = [
     "0f56b4b1-24dd-4e5c-9913-989675805e55",
     "6fbc49ec-d117-491d-aac5-accb4ebf4aef",
@@ -34,7 +34,8 @@ function ChadhavaPage(props: DIProps) {
     if (request)
       request
         .GET(
-          chadhaava_getchadhaavaById + (chadhava_id?.split("__")[0] ?? "MAHAKAAL_CHADHAAVA"),
+          chadhaava_getchadhaavaById +
+            (chadhava_id?.split("__")[0] ?? "MAHAKAAL_CHADHAAVA"),
           {
             signal: controller.signal,
           }
@@ -73,7 +74,7 @@ function ChadhavaPage(props: DIProps) {
               chadhaavaName: res?.data?.[0]?.chadhaavaName ?? "",
             });
             save_event(redux?.auth?.authToken, "Chadhava View", [eventParams]);
-          }
+          } else setChadhavaData([]);
         })
         .finally(() => {
           setLoading(false);
@@ -81,24 +82,26 @@ function ChadhavaPage(props: DIProps) {
   };
 
   useEffect(() => {
-    if (!loading && chadhavaData?.length == 0) getChadhavaDetailsById();
+    if (!loading && !chadhavaData) getChadhavaDetailsById();
     return () => {
       controller.abort();
     };
   }, []);
 
-  return !loading && chadhavaData?.length > 0 ? (
-    <DetailsProvider>
-      <ChadhavaDetails data={chadhavaData} />
-    </DetailsProvider>
-  ) : !loading ? (
-    <div className="error-message">
-      <DataNotFound />
-    </div>
-  ) : (
-    <div className="page-loader">
-      <LoadingSpinner />
-    </div>
+  return (
+    <>
+      {!chadhavaData ? (
+        <ChadhavaDetailsSkeleton />
+      ) : chadhavaData && chadhavaData?.length == 0 ? (
+        <div className="error-message">
+          <DataNotFound />
+        </div>
+      ) : (
+        <DetailsProvider>
+          <ChadhavaDetails data={chadhavaData} />
+        </DetailsProvider>
+      )}
+    </>
   );
 }
 const WrappedPage = DI(ChadhavaPage) as unknown as React.FC;

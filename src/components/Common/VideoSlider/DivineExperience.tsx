@@ -11,7 +11,6 @@ declare global {
   }
 }
 import "./VideoSlider.css";
-import templeThumbnail from "../../../assets/images/thumbnail.png";
 import { PlayButtonSvg } from "@/assets/svgs";
 import Image from "next/image";
 import useWindow from "@/customHooks/useWindows";
@@ -19,7 +18,7 @@ import useWindow from "@/customHooks/useWindows";
 interface Props {
   devineExperience: any;
 }
-
+const templeThumbnail = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600524685-sw0ke.webp";
 const DivineExperience = ({ devineExperience }: Props) => {
   const { width } = useWindow();
   const [activeIndex, setActiveIndex] = useState(0);

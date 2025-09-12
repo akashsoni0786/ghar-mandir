@@ -23,6 +23,8 @@ import {
 import SearchFilter from "../Common/SearchFilter";
 import { filters, videoSource } from "@/commonvaribles/constant_variable";
 import useTrans from "@/customHooks/useTrans";
+import ChadhavaListingSkeleton from "../../skeletons/chadhava/ChadhavaListingSkeleton/ChadhavaListingSkeleton";
+import BannerSkeleton from "@/skeletons/banner/BannerSkeleton";
 const {
   POST: { categoryPage_details, categoryPage_getBanners },
 } = urlFetchCalls;
@@ -141,64 +143,61 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
   }, []);
   return (
     <div>
-      <div style={{ margin: "20px 0 20px 0" }}>
-        {bannerLoad ? (
-          <div className="box-loader">
-            <LoadingSpinner />
-          </div>
-        ) : (
+      {bannerLoad ? (
+        <BannerSkeleton />
+      ) : (
+        <div style={{ margin: "20px 0 20px 0" }}>
           <CarouselBanner itemList={banners} />
-        )}
-      </div>
-      <div className="container">
-        <h2 className="category-heading ph-16">
-          {t("UPCOMING_CHADHAVA_HEAD")}
-        </h2>
-        <p className="category-description ph-16">
-          {t("UPCOMING_CHADHAVA_SUBHEAD")}
-        </p>
+        </div>
+      )}
 
-        <SearchFilter
-          type={"Search Chadhava"}
-          changedData={setParams}
-          filters={filters}
-        />
-        <div className="horizontal-line-gray"></div>
-        <p className="listing-result ph-16">
-          Search Result ({allChadhava?.length ?? 0})
-        </p>
-        {loading ? (
-          <div className="page-loader">
-            <LoadingSpinner />
-          </div>
-        ) : allChadhava.length == 0 ? (
-          <SearchFilterEmpty />
-        ) : (
-          <div className="listing-cards">
-            {allChadhava
-              // .slice(0, visibleCount)
-              .map((item: any, index: number) => (
-                <ChadhavaCard
-                  key={index}
-                  data={item}
-                  index={index}
-                  eventData={() => {
-                    const eventbtn = button_event(
-                      "Participate Now",
-                      "Chadhava Card : " + (item?.heading ?? ""),
-                      "Chadhava Listing"
-                    );
-                    const eventParams = pageview_event("Chadhava View");
-                    save_event(redux?.auth?.authToken, "Chadhava Listing", [
-                      eventbtn,
-                      eventParams,
-                    ]);
-                  }}
-                />
-              ))}
-          </div>
-        )}
-        {/* <div className="show-more-btn">
+      {loading ? (
+        <ChadhavaListingSkeleton />
+      ) : (
+        <div className="container">
+          <h2 className="category-heading ph-16">
+            {t("UPCOMING_CHADHAVA_HEAD")}
+          </h2>
+          <p className="category-description ph-16">
+            {t("UPCOMING_CHADHAVA_SUBHEAD")}
+          </p>
+          <SearchFilter
+            type={"Search Chadhava"}
+            changedData={setParams}
+            filters={filters}
+          />
+          <div className="horizontal-line-gray"></div>
+          <p className="listing-result ph-16">
+            Search Result ({allChadhava?.length ?? 0})
+          </p>
+          {allChadhava.length == 0 ? (
+            <SearchFilterEmpty />
+          ) : (
+            <div className="listing-cards">
+              {allChadhava
+                // .slice(0, visibleCount)
+                .map((item: any, index: number) => (
+                  <ChadhavaCard
+                    key={index}
+                    data={item}
+                    index={index}
+                    eventData={() => {
+                      const eventbtn = button_event(
+                        "Participate Now",
+                        "Chadhava Card : " + (item?.heading ?? ""),
+                        "Chadhava Listing"
+                      );
+                      const eventParams = pageview_event("Chadhava View");
+                      save_event(redux?.auth?.authToken, "Chadhava Listing", [
+                        eventbtn,
+                        eventParams,
+                      ]);
+                    }}
+                  />
+                ))}
+            </div>
+          )}
+          {/* <div className="show-more-btn">
           {visibleCount < allChadhava.length && (
             <TextButton
               children={"Show More Chadhava"}
@@ -206,8 +205,7 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
             />
           )}
         </div> */}
-
-        {/* <div className="horizontal-line-gray"></div>
+          {/* <div className="horizontal-line-gray"></div>
         <div className="containerlist-box">
           <h3 className="containerlist-box-heading ph-1">
             Recommended Chadhava
@@ -223,11 +221,12 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
             <RecommendedPujaCard />
           </div>
         </div> */}
-        <div className="ph-1">
-          {" "}
-          <SpiritualGuidanceBanner />{" "}
+          <div className="ph-1">
+            {" "}
+            <SpiritualGuidanceBanner />{" "}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

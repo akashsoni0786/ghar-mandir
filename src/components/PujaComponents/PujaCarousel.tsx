@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 // Import your images
-import Carousel1 from '@/assets/images/little-krishna.png';
-import Carousel2 from '@/assets/images/vishnu-laxmi.png';
+const Carousel1 = 'https://d28wmhrn813hkk.cloudfront.net/uploads/1757599545254-knz9ie.webp';
+const Carousel2 = 'https://d28wmhrn813hkk.cloudfront.net/uploads/1757599496123-79q1e.webp';
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

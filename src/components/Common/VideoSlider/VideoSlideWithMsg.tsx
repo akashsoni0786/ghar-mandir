@@ -11,7 +11,6 @@ declare global {
   }
 }
 
-import templeThumbnail from "../../../assets/images/thumbnail.png";
 import { PlayButtonSvg } from "@/assets/svgs";
 import Image from "next/image";
 import "./VideoSlider.css";
@@ -20,7 +19,7 @@ interface Props {
   devineExperience: any;
   componentType?: string;
 }
-
+const templeThumbnail = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600524685-sw0ke.webp";
 const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);

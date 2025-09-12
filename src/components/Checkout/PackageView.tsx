@@ -91,6 +91,7 @@ const PackageView = (props: Props) => {
       } else {
         if (dispatch) {
           dispatch(removeFromCartData({ cart_id }));
+          pushToDataLayerWithoutEvent(transformToRemoveItemCartEvent(cart_id));
           if (toast) toast.show(t("REMOVED_SUCCESSFULLY"), "success");
         }
       }

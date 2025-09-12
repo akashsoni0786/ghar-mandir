@@ -1,8 +1,10 @@
 import Image from "next/image";
-import Panditji from "../../assets/images/panditji.png";
+
 interface Props {
   poojaVidhi: any;
 }
+const Panditji =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600786316-l3ka8.webp";
 const MantraSection = ({ poojaVidhi }: Props) => {
   return (
     <div className=" mantra-section">
@@ -26,8 +28,11 @@ const MantraSection = ({ poojaVidhi }: Props) => {
 
           {poojaVidhi?.vidhis?.length > 0 && (
             <div className="mantra-box">
-              {poojaVidhi?.vidhis?.map((item,index) => (
-                <div className="mantra-textContainer" key={`${index}-${item?.title ?? ""}`}>
+              {poojaVidhi?.vidhis?.map((item, index) => (
+                <div
+                  className="mantra-textContainer"
+                  key={`${index}-${item?.title ?? ""}`}
+                >
                   <label className="mantra-textContainer--label">
                     {`${item?.title ?? ""}`}
                   </label>

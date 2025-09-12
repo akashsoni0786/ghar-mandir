@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import TempleImage from "../../assets/images/temple.png"; // Import your temple image
+
 import Image from "next/image";
 import useWindow from "@/customHooks/useWindows";
 interface Props {
   aboutTemple: any;
 }
+const TempleImage = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600665605-56bdb.webp"; 
 const AboutTemple = ({ aboutTemple }: Props) => {
   const width = typeof window !== "undefined" ? useWindow().width : 0;
   const [showmore, setShowmore] = useState(false);

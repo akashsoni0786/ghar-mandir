@@ -1,10 +1,16 @@
 import { GetIcon1, GetIcon2, GetIcon3 } from "@/assets/svgs";
-import rev_1 from "../assets/images/rev_1.png";
-import rev_2 from "../assets/images/rev_2.png";
-import rev_3 from "../assets/images/rev_3.png";
-import rev_4 from "../assets/images/rev_4.png";
-import rev_5 from "../assets/images/rev_5.png";
-import rev_6 from "../assets/images/rev_6.png";
+const rev_1 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600828092-zm723g.webp";
+const rev_2 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600874755-tcxpjw.webp";
+const rev_3 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600892593-kgwsii.webp";
+const rev_4 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600913835-sz9vjv.webp";
+const rev_5 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600934610-s3frzi.webp";
+const rev_6 =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600955497-fbqr84.webp";
 export const Single =
   "https://d28wmhrn813hkk.cloudfront.net/uploads/1757403618519-j5fof.webp";
 export const Couple =

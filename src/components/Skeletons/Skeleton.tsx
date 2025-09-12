@@ -11,8 +11,12 @@ export const SkeletonLine = ({
   height = "1rem",
   className,
 }: SkeletonProps) => {
-  const style = className ? {} : { width, height };
-  return <div className={`skeletonLine ${className || ""}`} style={style}></div>;
+  return (
+    <div
+      className={`skeletonLine ${className || ""}`}
+      style={{ width, height }}
+    ></div>
+  );
 };
 
 export const SkeletonParagraph = ({
@@ -27,7 +31,10 @@ export const SkeletonParagraph = ({
   className?: string;
 }) => {
   return (
-    <div className={`skeletonParagraph ${className || ""}`} style={{ gap: spacing }}>
+    <div
+      className={`skeletonParagraph ${className || ""}`}
+      style={{ display: "flex", flexDirection: "column", gap: spacing }}
+    >
       {Array.from({ length: lines }).map((_, index) => (
         <SkeletonLine
           key={index}
@@ -46,8 +53,12 @@ export const SkeletonAvatar = ({
   size?: string | number;
   className?: string;
 }) => {
-  const style = className ? {} : { width: size, height: size };
-  return <div className={`skeletonAvatar ${className || ""}`} style={style}></div>;
+  return (
+    <div
+      className={`skeletonAvatar ${className || ""}`}
+      style={{ width: size, height: size, borderRadius: "50%" }}
+    ></div>
+  );
 };
 
 export const SkeletonBox = ({
@@ -55,8 +66,12 @@ export const SkeletonBox = ({
   height = "200px",
   className,
 }: SkeletonProps) => {
-  const style = className ? {} : { width, height };
-  return <div className={`skeletonBox ${className || ""}`} style={style}></div>;
+  return (
+    <div
+      className={`skeletonBox ${className || ""}`}
+      style={{ width, height }}
+    ></div>
+  );
 };
 
 export const SkeletonCard = ({
@@ -70,9 +85,11 @@ export const SkeletonCard = ({
   height?: string | number;
   className?: string;
 }) => {
-  const style = className ? {} : { width, height };
   return (
-    <div className={`skeletonCard ${className || ""}`} style={style}>
+    <div
+      className={`skeletonCard ${className || ""}`}
+      style={{ width, height }}
+    >
       {children}
     </div>
   );

@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-import templeThumbnail from "../../../assets/images/thumbnail.png";
+
 import { PlayButtonSvg } from "@/assets/svgs";
 import Image from "next/image";
 import "./VideoSlider.css";
@@ -22,7 +22,7 @@ interface Props extends DIProps {
   devineExperience: any;
   eventData?: any;
 }
-
+const templeThumbnail = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600524685-sw0ke.webp";
 const VideoSliderWithStaticData = ({
   devineExperience,
   eventData,

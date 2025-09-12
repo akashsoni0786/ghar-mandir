@@ -1,11 +1,13 @@
 import { DarkBgButton, LightBgButton } from "./Buttons";
-import Logo from "../../assets/images/old_logo.png";
+
 import Image from "next/image";
 import { DI } from "@/core/DependencyInjection";
 import { DIProps } from "@/core/DI.types";
 interface Props extends DIProps {
   setConfirm: (e: boolean) => void;
 }
+
+const Logo = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600732588-92d6c.webp";
 const ConfirmationBox = ({ setConfirm, location }: any) => {
   return (
     <div className="confirmation-card">

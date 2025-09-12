@@ -4,8 +4,7 @@ import {
   ShieldRed,
   YoutubeClrIcon,
 } from "@/assets/svgs";
-import MakeInIndia from "../../assets/images/makeinindia.png";
-import Startup from "../../assets/images/startup.png";
+
 import Image from "next/image";
 import { urlFetchCalls } from "@/constants/url";
 import { DI } from "@/core/DependencyInjection";
@@ -14,6 +13,11 @@ import useTrans from "@/customHooks/useTrans";
 const {
   SHARE_LINKS: { facebook, instagram, youtube },
 } = urlFetchCalls;
+const MakeInIndia =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600246056-yn16y.webp";
+const Startup =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600298957-oqhf3g.webp";
+
 const Community = ({ redux }: DIProps) => {
   const t = useTrans(redux?.common?.language);
   return (
@@ -62,9 +66,19 @@ const Community = ({ redux }: DIProps) => {
             src={MakeInIndia}
             alt="makeinindia"
             className="startup-image"
+            width={500}
+            height={300}
           />
 
-          <Image src={Startup} alt="makeinindia" className="startup-image" />
+          {/* <Image src={Startup} alt="makeinindia" className="startup-image" /> */}
+          <Image
+            src="https://d28wmhrn813hkk.cloudfront.net/uploads/1757600298957-oqhf3g.webp"
+            alt="makeinindia"
+            width={500}
+            height={300}
+            unoptimized
+            className="startup-image"
+          />
 
           {/* <Image src={DPIIT} alt="makeinindia" className="startup-image3" />
            */}

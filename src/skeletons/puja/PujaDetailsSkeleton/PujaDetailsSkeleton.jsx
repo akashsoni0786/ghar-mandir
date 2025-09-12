@@ -37,10 +37,12 @@ const PujaDetailsSkeleton = () => {
               )}
             </div>
 
-            <SkeletonLine
-              width={"100%"}
-              height={width > 480 ? "50px" : "40px"}
-            />
+            <div>
+              <SkeletonLine
+                width={"100%"}
+                height={width > 480 ? "50px" : "40px"}
+              />
+            </div>
             {width > 480 && (
               <div className="pujadetailsskeleton-hero--data-rating">
                 <SkeletonLine width={"40px"} />
@@ -58,8 +60,18 @@ const PujaDetailsSkeleton = () => {
               <SkeletonLine width={"30%"} height={"10px"} />
             </div>
             <div className="horizontal-line-gray" />
-            <SkeletonLine width={"30%"} />
-            <SkeletonParagraph lines={12} lineHeight={"10px"} />
+            <div>
+              <SkeletonLine width={"50%"} height={"20px"} />
+            </div>
+            <div>
+              <SkeletonParagraph lines={4} lineHeight={"10px"} />
+            </div>
+            <div>
+              <SkeletonParagraph lines={3} lineHeight={"10px"} />
+            </div>
+            <div>
+              <SkeletonParagraph lines={5} lineHeight={"10px"} />
+            </div>
           </div>
         </div>
         {/* Package Section */}

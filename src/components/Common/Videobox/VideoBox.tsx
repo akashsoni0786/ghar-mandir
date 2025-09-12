@@ -4,8 +4,9 @@ import "./VideoBox.css";
 import { DI } from "@/core/DependencyInjection";
 import { DIProps } from "@/core/DI.types";
 import { Minimize, X } from "react-feather";
-import ThumbnailImg from "../../../assets/images/video-thumbnail.webp";
+
 const VideoBox = ({ redux }: DIProps) => {
+  const ThumbnailImg = 'https://d28wmhrn813hkk.cloudfront.net/uploads/1757599270021-xh3oep.webp';
   const { width } = useWindow();
   const [isVisible, setIsVisible] = useState(
     (sessionStorage.getItem("video") ?? "") != "hidden"
@@ -229,7 +230,7 @@ const VideoBox = ({ redux }: DIProps) => {
       <div className="fullscreenModalContent">
         <div className="fullscreenVideoContainer">
           <video
-            poster={ThumbnailImg.src}
+            poster={ThumbnailImg}
             ref={videoRef}
             className="fullscreenVideo"
             playsInline
@@ -299,7 +300,7 @@ const VideoBox = ({ redux }: DIProps) => {
           onTouchStart={handleTouchStart}
         />
         <video
-          poster={ThumbnailImg.src}
+          poster={ThumbnailImg}
           ref={videoRef}
           className="videoPlayer"
           playsInline

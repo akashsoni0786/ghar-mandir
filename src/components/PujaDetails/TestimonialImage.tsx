@@ -12,7 +12,7 @@ const TestimonialImage = ({ data }: any) => {
       <div className="testimonial-card-quote">
         <ThumbIcon />
       </div>
-      <Image
+      <img
         alt="review"
         src={data.img}
         style={{

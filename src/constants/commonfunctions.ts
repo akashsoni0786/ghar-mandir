@@ -950,85 +950,91 @@ export function transformToBeginCheckoutEvent(cartItems) {
 }
 
 export function generatePurchaseEvents(cartdata, redux, totalAmout) {
-  const billing = {
-    first_name: redux?.auth?.username.split(" ")[0] || "",
-    last_name: redux?.auth?.username.split(" ")[1] || "",
-    company: "Ghar Mandir", // Add if available
-    ...(redux?.checkout?.address?.address?.street_address && {
-      address_1: redux?.checkout?.address?.address?.street_address || "",
-    }),
-    ...(redux?.checkout?.address?.address?.city && {
-      city: redux?.checkout?.address?.address?.city || "",
-    }),
-    ...(redux?.checkout?.address?.address?.state && {
-      state: redux?.checkout?.address?.address?.state || "",
-    }),
-    ...(redux?.checkout?.address?.address?.pincode && {
-      postcode: redux?.checkout?.address?.address?.pincode || "",
-    }),
-    ...(redux?.checkout?.address?.address?.country && {
-      country: redux?.checkout?.address?.address?.country || "India",
-    }),
-    email: redux?.auth?.email || "", // Add if available in redux
-    phone: redux?.auth?.mobile || "",
-  };
-
-  const transactionId =
+  try{
+    const [firstName = "", lastName = ""] = (redux?.auth?.username || "").split(" ");
+    
+    const billing = {
+      first_name: firstName,
+      last_name: lastName,
+      company: "Ghar Mandir", // Add if available
+      ...(redux?.checkout?.address?.address?.street_address && {
+        address_1: redux?.checkout?.address?.address?.street_address || "",
+      }),
+      ...(redux?.checkout?.address?.address?.city && {
+        city: redux?.checkout?.address?.address?.city || "",
+      }),
+      ...(redux?.checkout?.address?.address?.state && {
+        state: redux?.checkout?.address?.address?.state || "",
+      }),
+      ...(redux?.checkout?.address?.address?.pincode && {
+        postcode: redux?.checkout?.address?.address?.pincode || "",
+      }),
+      ...(redux?.checkout?.address?.address?.country && {
+        country: redux?.checkout?.address?.address?.country || "India",
+      }),
+      email: redux?.auth?.email || "", // Add if available in redux
+      phone: redux?.auth?.mobile || "",
+    };
+    
+    const transactionId =
     redux?.common?.transactionId?.paymentId || `${Date.now()}`;
-
-  const items: any = [];
-
-  cartdata.forEach((item) => {
-    const product = item?.product;
-
-    // Base item
-    items.push({
-      item_id: product?.poojaId || product?.chadhaavaId || "",
-      item_name: product.heading || "",
-      sku: product.poojaId || product.chadhaavaId || "",
-      price: item.package?.price || 0,
-      stocklevel: null,
-      stockstatus: "instock",
-      google_business_vertical: "retail",
-      item_category: item.temple || "", // e.g., "Banke Bihari, Vrindavan"
-      id: product.poojaId || product.chadhaavaId || "",
-      quantity: 1,
+    
+    const items: any = [];
+    
+    cartdata.forEach((item) => {
+      const product = item?.product;
+      
+      // Base item
+      items.push({
+        item_id: product?.poojaId || product?.chadhaavaId || "",
+        item_name: product?.heading || "",
+        sku: product?.poojaId || product?.chadhaavaId || "",
+        price: item?.package?.price || 0,
+        stocklevel: null,
+        stockstatus: "instock",
+        google_business_vertical: "retail",
+        item_category: item?.temple || "", // e.g., "Banke Bihari, Vrindavan"
+        id: product?.poojaId || product?.chadhaavaId || "",
+        quantity: 1,
+      });
     });
-  });
-  let totalValue = items.reduce(
-    (sum, item) => sum + item.price * (item.quantity || 1),
-    0
-  );
-  cartdata?.forEach((price_val: any) => {
-    if (price_val?.offerings && price_val?.offerings?.length) {
-      price_val?.offerings?.map((prc: any) => {
-        if (prc.count && prc.count > 0) totalValue += prc.count * prc.price;
-      });
-    }
-    if (price_val?.prasad && price_val?.prasad?.length) {
-      price_val?.prasad?.map((prc: any) => {
-        if (prc.count && prc.count > 0) totalValue += prc.count * prc.price;
-      });
-    }
-  });
-  return {
-    event: "purchase",
-    orderData: {
-      customer: {
-        billing,
+    let totalValue = items.reduce(
+      (sum, item) => sum + item.price * (item?.quantity || 1),
+      0
+    );
+    cartdata?.forEach((price_val: any) => {
+      if (price_val?.offerings && price_val?.offerings?.length) {
+        price_val?.offerings?.map((prc: any) => {
+          if (prc.count && prc.count > 0) totalValue += prc.count * prc.price;
+        });
+      }
+      if (price_val?.prasad && price_val?.prasad?.length) {
+        price_val?.prasad?.map((prc: any) => {
+          if (prc.count && prc.count > 0) totalValue += prc.count * prc.price;
+        });
+      }
+    });
+    return {
+      event: "purchase",
+      orderData: {
+        customer: {
+          billing,
+        },
       },
-    },
-    ecommerce: {
-      currency: getCurrencyName(),
-      transaction_id: transactionId,
-      affiliation: "",
-      value: totalAmout,
-      tax: 0,
-      shipping: 0,
-      coupon: "",
-      items,
-    },
-  };
+      ecommerce: {
+        currency: getCurrencyName(),
+        transaction_id: transactionId,
+        affiliation: "",
+        value: totalAmout,
+        tax: 0,
+        shipping: 0,
+        coupon: "",
+        items,
+      },
+    };
+  }catch(e){
+      console.error("Event:Error:", e, { username: redux?.auth?.username  || "" })
+  }
 }
 
 export function formatMembersWithButton(members) {
@@ -1236,7 +1242,7 @@ export const visitedUserDataLayerCheck = () => {
 
 export function transformEventPayloadFailPaymentEvent(evendData) {
   return {
-    event: "remove_from_cart",
+    event: "fail_payment_web",
     ...evendData,
   };
 }

@@ -1,0 +1,28 @@
+.skeleton-carousel-box {
+  flex: 0 0 calc(100% - 32px);
+  max-width: 1200px;
+  min-width: 360px;
+  min-height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+  background-size: cover;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 12px;
+}
+@media (max-width: 1200px) {
+  .skeleton-carousel-box {
+    min-height: 370.79px;
+  }
+}
+@media (max-width: 990px) {
+  .skeleton-carousel-box {
+    min-height: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .skeleton-carousel-box {
+    min-height: 260px;
+  }
+}
