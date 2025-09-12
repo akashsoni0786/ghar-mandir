@@ -1093,7 +1093,6 @@ const ShareButton: React.FC<ShareButtonProps> = ({
                   fontFamily="none"
                   fontWeight="none"
                   fontSize="none"
-                  textAnchor="none"
                   style={{ mixBlendMode: "normal" }}
                 >
                   <g transform="scale(5.33333,5.33333)">
