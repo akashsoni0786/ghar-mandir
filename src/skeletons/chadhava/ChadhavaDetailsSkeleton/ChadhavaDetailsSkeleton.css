@@ -7,7 +7,7 @@
 }
 .pujadetailsskeleton-hero--img {
   flex: 1 0 50%;
-  height: 400px;
+  min-height: 400px;
   width: 100%;
 }
 .pujadetailsskeleton-hero--data {
@@ -49,6 +49,7 @@
   .pujadetailsskeleton-hero--img {
     flex: 1 0 100%;
     min-height: 400px;
+    width: 100%;
   }
   .pujadetailsskeleton-hero--data {
     flex: 1 0 100%;

@@ -11,7 +11,6 @@ import { pushToDataLayerWithoutEvent } from "@/lib/gtm";
 import { transformToViewItemEvent } from "@/constants/commonfunctions";
 import { DetailsProvider } from "../PujaDetails/PoojaDetailsContext";
 import { pageview_event, save_event } from "@/constants/eventlogfunctions";
-import { videoSource } from "@/commonvaribles/constant_variable";
 import { updateVideo } from "@/store/slices/commonSlice";
 import ChadhavaDetailsSkeleton from "../../skeletons/chadhava/ChadhavaDetailsSkeleton/ChadhavaDetailsSkeleton";
 const {
@@ -55,7 +54,7 @@ function ChadhavaPage(props: DIProps) {
               if (res?.data?.[0]?.advertizeVideo) {
                 dispatch(
                   updateVideo({
-                    video_data: res?.data?.[0]?.advertizeVideo ?? videoSource,
+                    video_data: res?.data?.[0]?.advertizeVideo ?? redux?.common?.default_videoSource,
                   })
                 );
               } else {

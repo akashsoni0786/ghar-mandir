@@ -1,11 +1,11 @@
 "use client";
-import FullPageLoader from "@/components/Common/Loadings/FullPageLoader";
 import { PageWrapperWithoutFooter } from "../Routes";
 import dynamic from "next/dynamic";
+import CheckoutSkeleton from "@/skeletons/checkout/CheckoutSkeleton";
 const CheckoutLoader = dynamic(
   () => import("../../components/Checkout/CheckoutPage"),
   {
-    loading: () => <FullPageLoader />,
+    loading: () => <CheckoutSkeleton />,
     ssr: false,
   }
 );

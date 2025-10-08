@@ -23,9 +23,17 @@ interface Props extends DIProps {
   index?: any;
   path?: string;
   eventData?: any;
+  listingPage?: boolean;
 }
 
-const ChadhavaCard = ({ data, index, path, eventData, redux }: Props) => {
+const ChadhavaCard = ({
+  data,
+  index,
+  path,
+  eventData,
+  redux,
+  listingPage,
+}: Props) => {
   const t = useTrans(redux?.common?.language);
   const route = useRouter();
   const { width } = useWindow();
@@ -89,7 +97,9 @@ const ChadhavaCard = ({ data, index, path, eventData, redux }: Props) => {
         route.push(`/chadhava/${data?.chadhaavaName}`);
         if (eventData) eventData();
       }}
-      className="card-participate"
+      className={`card-participate ${
+        listingPage ? "" : "scrollable-boxes--child"
+      }`}
       style={{
         backgroundImage: `
         linear-gradient(0deg, rgba(19, 33, 2, 0.5) 30%, rgba(19, 33, 2, 0.2) 60%, rgba(19, 33, 2, 0) 69%),

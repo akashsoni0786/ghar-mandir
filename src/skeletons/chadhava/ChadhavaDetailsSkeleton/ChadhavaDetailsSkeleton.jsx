@@ -105,7 +105,7 @@ const ChadhavaDetailsSkeleton = () => {
                       <div style={{padding:"8px 0"}}><SkeletonLine width={"100px"} height={"20px"} /></div>
                     </div>
 
-                    <SkeletonBox className="package-selection-offering--box-img" />
+                    <SkeletonBox className="package-selection-offering--box-img" width={'110px'} height={"90px"}/>
                   </div>
                 );
               })}
@@ -184,8 +184,8 @@ const ChadhavaDetailsSkeleton = () => {
           </div>
         </div>
 
-        {[1, 2, 3].map((_) => (
-          <div className="container-box ph-1">
+        {[1, 2, 3].map((_,idx) => (
+          <div className="container-box ph-1" key={idx}>
             <SkeletonBox
               height={width > 480 ? "60px" : "40px"}
               width={"100%"}

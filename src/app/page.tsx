@@ -1,17 +1,17 @@
 "use client";
 import dynamic from "next/dynamic";
-import FullPageLoader from "@/components/Common/Loadings/FullPageLoader";
 import { useEffect } from "react";
 import { visitedUserDataLayerCheck } from "@/constants/commonfunctions";
 import { PageWrapper } from "./Routes";
 import { getSessionStorage } from "@/services/storage";
 import { pushToDataLayer } from "@/lib/gtm";
+import HomeSkeleton from "@/skeletons/home/HomeSkeleton";
 
 export default function Page() {
   const HomePage = dynamic(
     () => import("../components/Home/Home"),
     {
-      loading: () => <FullPageLoader />,
+      loading: () => <HomeSkeleton />,
       ssr: false,
     }
   );

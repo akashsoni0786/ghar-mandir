@@ -31,11 +31,17 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <head>
-        <Script
-          id="utm-referrer-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1,, maximum-scale=1, viewport-fit=cover"
+        />
+
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script
+            id="utm-referrer-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
     (function() {
       // Function to save UTM parameters to local storage with an expiry of 30 days
       function saveUTMParameters() {
@@ -128,8 +134,9 @@ export default function RootLayout({
       setTimeout(setReferrerAndUTMInForm, 500);
     })();
     `,
-          }}
-        />
+            }}
+          />
+        )}
         {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
           <Script
             id="clarity-script"
@@ -145,23 +152,28 @@ export default function RootLayout({
             }}
           />
         )}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-DF1RPTNXT0"
-        />
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-DF1RPTNXT0"
+          />
+        )}
 
-        <Script id="google-analytics">
-          {`
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script id="google-analytics">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'G-DF1RPTNXT0');
           `}
-        </Script>
+          </Script>
+        )}
 
-        <Script id="gtm-dataLayer" strategy="afterInteractive">
-          {`
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script id="gtm-dataLayer" strategy="afterInteractive">
+            {`
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           'event': 'pageview',
@@ -172,22 +184,26 @@ export default function RootLayout({
           }
         });
       `}
-        </Script>
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          </Script>
+        )}
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
             var f=d.getElementsByTagName(s)[0],j=d.createElement(s);
             j.async=true;
             j.src="https://load.gtm.gharmandir.in/dlhy6xxxkzrju.js?"+i;
             f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','9d=aWQ9R1RNLU5RVDlURDhO&sort=desc')`,
-          }}
-        />
+            }}
+          />
+        )}
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
             /**
              * UTM Parameters and Visitor Journey Tracker
              * Tracks UTM parameters, referrals, and visitor journey with cookie and localStorage sync
@@ -738,8 +754,9 @@ export default function RootLayout({
                 }
             };
             `,
-          }}
-        />
+            }}
+          />
+        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -748,11 +765,12 @@ export default function RootLayout({
           <Providers>{children}</Providers>
         </ToastProvider>
 
-        <Script
-          id="exit-intent-gtm"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-        __html: `
+        {process.env.NEXT_PUBLIC_NODE_ENV === "production" && (
+          <Script
+            id="exit-intent-gtm"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
           (function() {
             let exitIntentFired = false;
 
@@ -808,8 +826,9 @@ export default function RootLayout({
             window.addEventListener('touchend', handleTouchEnd);
           })();
         `,
-          }}
-        />
+            }}
+          />
+        )}
       </body>
     </html>
   );

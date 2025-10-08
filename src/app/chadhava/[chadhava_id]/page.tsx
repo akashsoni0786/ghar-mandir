@@ -1,11 +1,11 @@
 "use client";
 import { PageWrapper } from "@/app/Routes";
-import FullPageLoader from "@/components/Common/Loadings/FullPageLoader";
+import ChadhavaDetailsSkeleton from "@/skeletons/chadhava/ChadhavaDetailsSkeleton/ChadhavaDetailsSkeleton";
 import dynamic from "next/dynamic";
 const ChadhavaComponent = dynamic(
   () => import("../../../components/Chadhava/ChadhavaPage"),
   {
-    loading: () => <FullPageLoader />,
+    loading: () => <ChadhavaDetailsSkeleton />,
     ssr: false,
   }
 );

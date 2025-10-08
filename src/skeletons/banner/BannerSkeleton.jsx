@@ -6,8 +6,10 @@ const BannerSkeleton = () => {
     <div style={{ margin: "20px 0" }}>
       <div className="banner-carousel-container">
         <div className="banner-carousel">
-          {[1, 2, 3, 4, 5]?.map((item, index) => (
-            <SkeletonBox className="skeleton-carousel-box" />
+          {[1, 2, 3, 4, 5]?.map((item) => (
+            <span key={item} className="skeleton-carousel-box">
+              <SkeletonBox className="skeleton-carousel-box" />
+            </span>
           ))}
         </div>
       </div>

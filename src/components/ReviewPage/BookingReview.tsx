@@ -42,6 +42,7 @@ const BookingReview = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(Number(formData.rating ?? 0) >0){
     if (request) {
       request
         .POST(bookings_updateUserFeedback, {
@@ -61,9 +62,11 @@ const BookingReview = ({
               review: "",
             });
             setShow(true);
-            if (reviewData?.rating) reloadPage();
+             reloadPage();
           }
         });
+    }} else {
+      toast?.show("Please provide a rating.", "error");
     }
   };
 

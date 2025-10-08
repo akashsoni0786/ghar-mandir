@@ -40,6 +40,8 @@ export const urlFetchCalls: FetchCalls = {
     subscription_startSubscription: "subscription/startSubscription",
     subscription_subscriptionPayment: "subscription/subscriptionPayment",
     bookings_updateUserFeedback: "bookings/updateUserFeedback",
+    leads_addLead: "leads/addLead",
+    orders_videoSeen:"orders/videoSeen"
   },
   GET: {
     getPoojaById: "pooja/getPoojaById/",
@@ -49,6 +51,7 @@ export const urlFetchCalls: FetchCalls = {
     users_getUserProfile: "users/getUserProfile",
     add_getDevineExperience: "add/getDevineExperience",
     bookins_getAllBookings: "bookings/getAllBookings",
+    categoryPage_getHomepageVideo: "categoryPage/getHomepageVideo",
   },
   SHARE_LINKS: {
     privacy_policy: "https://gharmandir.in/privacy-policy/",
@@ -56,7 +59,7 @@ export const urlFetchCalls: FetchCalls = {
     facebook: "https://www.facebook.com/p/Ghar-Mandir-61550580561787/",
     twitter: "",
     whatsapp:
-      "https://api.whatsapp.com/send/?phone=917039858794&text=Namaste&type=phone_number&app_absent=0",
+      "https://api.whatsapp.com/send/?phone=919461594942&text=Namaste&type=phone_number&app_absent=0",
     youtube: "https://www.youtube.com/@GharMandir",
   },
 };

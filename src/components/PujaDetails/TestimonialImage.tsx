@@ -12,7 +12,7 @@ const TestimonialImage = ({ data }: any) => {
       <div className="testimonial-card-quote">
         <ThumbIcon />
       </div>
-      <img
+      {/* <img
         alt="review"
         src={data.img}
         style={{
@@ -20,7 +20,29 @@ const TestimonialImage = ({ data }: any) => {
           borderRadius: "4px",
           transform: "scale(1)",
         }}
-      />
+      /> */}
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "300px",
+          border: "5px solid white",
+          borderRadius: "4px",
+          transform: "scale(1)",
+          minWidth: "260px",
+        }}
+      >
+        <Image
+          alt="review"
+          src={data.img}
+          style={{
+            border: "5px solid white",
+            borderRadius: "4px",
+            transform: "scale(1)",
+          }}
+          fill
+        />
+      </div>
       <div className="testimonial-card-divider">
         <div className="testimonial-card-divider-usericons">
           <div className="testimonial-card-divider-usericons-1">

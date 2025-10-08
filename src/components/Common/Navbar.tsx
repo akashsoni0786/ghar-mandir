@@ -18,8 +18,6 @@ import {
   save_event,
 } from "@/constants/eventlogfunctions";
 import useTrans from "@/customHooks/useTrans";
-import { language_short } from "@/commonvaribles/constant_variable";
-import LanguageSwitcher from "./LanguageSwitcher/LanguageSwitcher";
 import GoogleTranslate from "../GoogleTranslate/GoogleTranslate";
 const TopNavbar = ({ redux, location }: DIProps) => {
   const t = useTrans(redux?.common?.language);
@@ -63,10 +61,10 @@ const TopNavbar = ({ redux, location }: DIProps) => {
     //   path: "/kundali",
     //   active: location === "/kundali" ? true : false,
     // },
-    // {
-    //   title: "VIP Puja",
-    //   path: "/vip_puja",
-    // },
+    {
+      title: "My Bookings",
+      path: "/bookings",
+    },
     // {
     //   title: "Temples",
     //   path: "/temples",
@@ -115,7 +113,9 @@ const TopNavbar = ({ redux, location }: DIProps) => {
     }
   };
   const language_switcher = (
-    <div style={{position:"relative"}}><GoogleTranslate /></div>
+    <div style={{ position: "relative" }}>
+      <GoogleTranslate />
+    </div>
     // <SmartPopover
     //   trigger={
     //     <div className="language-button">
@@ -133,7 +133,14 @@ const TopNavbar = ({ redux, location }: DIProps) => {
     setRoutes(
       fix_path.map((route) => ({
         ...route,
-        active:  location === route.path && route.path !== "/" ? true : route.path !== "/" && location?.includes(route.path) ? true : location === "/" && route.path === "/" ? true : false,
+        active:
+          location === route.path && route.path !== "/"
+            ? true
+            : route.path !== "/" && location?.includes(route.path)
+            ? true
+            : location === "/" && route.path === "/"
+            ? true
+            : false,
       }))
     );
   }, [location, setRoutes, redux.common]);
@@ -176,6 +183,9 @@ const TopNavbar = ({ redux, location }: DIProps) => {
       document.body.classList.remove("menu-open");
     };
   }, [isMenuOpen]);
+  useEffect(() => {
+    setLoginCheck(sessionStorage.getItem("showLogin") == "true");
+  }, [sessionStorage.getItem("showLogin")]);
 
   return (
     <nav className="navbar" ref={navbarRef}>

@@ -2,9 +2,13 @@ import "./Bookings.css";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "react-feather";
 import SearchFilter from "../Common/SearchFilter";
-import { bookings, videoSource } from "@/commonvaribles/constant_variable";
-import StatusBox from "./StatusBox";
-import { ActiveCheckIconLight, CalenderIcon, TempleIcon } from "@/assets/svgs";
+import { bookings } from "@/commonvaribles/constant_variable";
+import {
+  ActiveCheckIconLight,
+  CalenderIcon,
+  GharmandirRed_Logo,
+  TempleIcon,
+} from "@/assets/svgs";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../Common/Loadings/LoadingSpinner";
 import { DIProps } from "@/core/DI.types";
@@ -20,7 +24,8 @@ import {
 import useTrans from "@/customHooks/useTrans";
 import { Tooltip } from "antd";
 import { updateVideo } from "@/store/slices/commonSlice";
-
+import { Spinner } from "../Common/Loadings/Spinner";
+import "./ViewBooking.css";
 const {
   GET: { bookins_getAllBookings },
 } = urlFetchCalls;
@@ -32,15 +37,9 @@ const Bookings = ({ request, redux, toast, location, dispatch }: DIProps) => {
   const [data, setData] = useState<any>(undefined);
   const [cloneData, setCloneData] = useState<any>(undefined);
   const [filter, setFilter] = useState({});
+  const [contactLoadings, setContactLoadings] = useState(false);
 
   useEffect(() => {
-    if (dispatch) {
-      dispatch(
-        updateVideo({
-          video_data: videoSource,
-        })
-      );
-    }
     if (request) {
       const eventbtn = pageview_event("Bookings");
       save_event(redux?.auth?.authToken, location ?? "Bookings", [eventbtn]);
@@ -108,7 +107,13 @@ const Bookings = ({ request, redux, toast, location, dispatch }: DIProps) => {
     if (Object.keys(filter).length > 0) filterData(cloneData, filter, setData);
     else setData(cloneData);
   }, [filter]);
-
+  if (dispatch) {
+    dispatch(
+      updateVideo({
+        video_data: null,
+      })
+    );
+  }
   return data ? (
     data?.length === 0 && Object.keys(filter).length === 0 ? (
       <ZeroResponse value={t("BOOKINGS")} />
@@ -236,6 +241,25 @@ const Bookings = ({ request, redux, toast, location, dispatch }: DIProps) => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div
+          style={{ margin: "16px 0" }}
+          className="booking-view--actions-invoice booking-view--actions-contact"
+          onClick={() => {
+            setContactLoadings(true);
+            router.push("../contact-us");
+          }}
+        >
+          <div className="data-flex">
+            <span>
+              <GharmandirRed_Logo />
+            </span>
+            <label className="btn-label btn-label-contact ">
+              {t("CONTACT_US")}
+            </label>
+          </div>
+          {contactLoadings && <Spinner size="large" />}
         </div>
       </div>
     )

@@ -28,7 +28,6 @@ import {
   updateTotalAmount,
 } from "@/store/slices/checkoutSlice";
 import { transactionIdUpdate } from "@/store/slices/commonSlice";
-import FullPageLoader from "../Common/Loadings/FullPageLoader";
 import { pushToDataLayerWithoutEvent } from "@/lib/gtm";
 import EmptyCartPage from "../NoDataComponents/EmptyCart";
 import LoadingSpinner from "../Common/Loadings/LoadingSpinner";
@@ -39,7 +38,6 @@ import {
   pageview_event,
   save_event,
 } from "@/constants/eventlogfunctions";
-import RecommendedChadhavaListing from "../Common/RecommendedChadhavaCard/RecommendedChadhavaListing";
 import useTrans from "@/customHooks/useTrans";
 import { login } from "@/store/slices/authSlice";
 import MobileFooterWithButtonComponent from "../Common/MobileFooterWithButtonComponent";
@@ -50,6 +48,7 @@ import {
 } from "@/constants/jscommonfunction";
 import PaymentLoader from "../Common/Loadings/PaymentLoader";
 import "../../styles/Checkout.css";
+import CheckoutSkeleton from "@/skeletons/checkout/CheckoutSkeleton";
 const {
   POST: {
     order_placeOrder,
@@ -117,7 +116,6 @@ const CheckoutPage = (props: DIProps) => {
   const [generatedOrderId, setGeneratedOrderId] = useState("");
   const [paypalLoader, setPaypalLoader] = useState(false);
   const hasRun = useRef(false);
-
   // PayPal config
   const initOptions = {
     clientId: process.env.NEXT_PUBLIC_PAYPAL_SECRET_CLIENT_ID || "",
@@ -137,14 +135,39 @@ const CheckoutPage = (props: DIProps) => {
               additional: res,
             });
             save_event(redux?.auth?.authToken, "Payment Confirmed", [eventbtn]);
+            if (!redux?.auth?.authToken || redux?.auth?.authToken == "") {
+              const login_data = JSON.parse(
+                localStorage.getItem("temp_login") ?? ""
+              );
+              dispatch?.(login(login_data));
+              const isNewUser = sessionStorage.getItem("new_user") === "true";
+              pushToDataLayerWithoutEvent({
+                event: isNewUser ? "user_register" : "user_login",
+                user_id: login_data?.authToken,
+                name: login_data.username || "",
+                mobile: login_data.mobile,
+                utm_source: getLocalStorageUtm("utm_source") ?? "",
+                utm_medium: getLocalStorageUtm("utm_medium") ?? "",
+                utm_campaign: getLocalStorageUtm("utm_campaign") ?? "",
+                utm_content: getLocalStorageUtm("utm_content") ?? "",
+                utm_term: getLocalStorageUtm("utm_term") ?? "",
+              });
+              localStorage.removeItem("temp_login");
+              sessionStorage.removeItem("new_user");
+            }
           }
         })
         .finally(() => {
-          
-          pushToDataLayerWithoutEvent(generatePurchaseEvents(cartArray, redux, packageData.totalCartAmount));
+          pushToDataLayerWithoutEvent(
+            generatePurchaseEvents(
+              cartArray,
+              redux,
+              packageData.totalCartAmount
+            )
+          );
           setLoading(false);
           router.push(`/payment-confirmed`);
-          setPaypalLoader(false);
+          // setPaypalLoader(false);
         });
     }
   };
@@ -152,10 +175,10 @@ const CheckoutPage = (props: DIProps) => {
   const modifyCartData = (res) => {
     setCartArray(res?.data);
     pushToDataLayerWithoutEvent(transformToViewCartEvent(res?.data));
-    pushToDataLayerWithoutEvent({
-      ...transformToBeginCheckoutEvent(res?.data),
-      mobile: addressData.phone_no,
-    });
+    // pushToDataLayerWithoutEvent({
+    //   ...transformToBeginCheckoutEvent(res?.data),
+    //   mobile: addressData.phone_no,
+    // });
 
     const obj = {
       Puja: res?.data?.filter((val: any) => val.type == "PUJA"),
@@ -219,10 +242,12 @@ const CheckoutPage = (props: DIProps) => {
           : obj.Puja?.length == 0
           ? addressData.members
           : {},
-      pitruNames: pitruChadhavaOrPuja == 2 && max_pitru_count>1 ? { [generateId()]: "" } : {},
+      pitruNames:
+        pitruChadhavaOrPuja == 2 && max_pitru_count > 1
+          ? { [generateId()]: "" }
+          : {},
     }));
   };
-  
 
   const getCartData = (userId = undefined) => {
     if (
@@ -393,6 +418,7 @@ const CheckoutPage = (props: DIProps) => {
       });
       if (res?.data) res = res?.data;
       // Validate response
+      sessionStorage.setItem("new_user", res?.user_registered);
       if (!res?.paypalOrderId) {
         throw new Error("Backend did not return a PayPal Order ID");
       }
@@ -406,26 +432,34 @@ const CheckoutPage = (props: DIProps) => {
       );
       dispatch?.(updateTotalAmount({ total_amount: res.totalCartAmount }));
       if (res.userId) {
-        dispatch?.(
-          login({
-            authToken: res.userId,
-            mobile: addressData.phone_no,
-            username: addressData.username,
-            countryCode: addressData.phone_code,
-          })
-        );
-        pushToDataLayerWithoutEvent({
-          event: "user_login",
-          user_id: res.userId,
-          name: addressData.username || "",
+        const temp_login_data = JSON.stringify({
+          authToken: res.userId,
           mobile: addressData.phone_no,
-          utm_source: getLocalStorageUtm("utm_source") ?? "",
-          utm_medium: getLocalStorageUtm("utm_medium") ?? "",
-          utm_campaign: getLocalStorageUtm("utm_campaign") ?? "",
-          utm_content: getLocalStorageUtm("utm_content") ?? "",
-          utm_term: getLocalStorageUtm("utm_term") ?? "",
+          username: addressData.username,
+          countryCode: addressData.phone_code,
         });
-        dispatch?.(resetCart({ cart_data: {} }));
+        localStorage.setItem("temp_login", temp_login_data);
+        localStorage.setItem("temp_uid", res.userId);
+        // dispatch?.(
+        //   login({
+        //     authToken: res.userId,
+        //     mobile: addressData.phone_no,
+        //     username: addressData.username,
+        //     countryCode: addressData.phone_code,
+        //   })
+        // );
+        // pushToDataLayerWithoutEvent({
+        //   event: (res?.user_registered)? "user_register": "user_login",
+        //   user_id: res.userId,
+        //   name: addressData.username || "",
+        //   mobile: addressData.phone_no,
+        //   utm_source: getLocalStorageUtm("utm_source") ?? "",
+        //   utm_medium: getLocalStorageUtm("utm_medium") ?? "",
+        //   utm_campaign: getLocalStorageUtm("utm_campaign") ?? "",
+        //   utm_content: getLocalStorageUtm("utm_content") ?? "",
+        //   utm_term: getLocalStorageUtm("utm_term") ?? "",
+        // });
+        // dispatch?.(resetCart({ cart_data: {} }));
       }
       // Create PayPal order
       const orderId = await actions.order.create({
@@ -466,7 +500,10 @@ const CheckoutPage = (props: DIProps) => {
       if (details?.status == "COMPLETED") {
         setPaypalTransactionId({
           orderId: generatedOrderId,
-          userId: redux.auth.authToken,
+          userId:
+            redux.auth.authToken && redux.auth.authToken != ""
+              ? redux.auth.authToken
+              : Number(localStorage.getItem("temp_uid")) ?? "N/A",
           paypalSubOrderId: data?.orderID,
         });
       }
@@ -483,6 +520,7 @@ const CheckoutPage = (props: DIProps) => {
             setCartData(undefined);
             setTimeout(() => {
               getTransactionId(generatedOrderId);
+              dispatch?.(resetCart({ cart_data: {} }));
             }, 30000);
           }
         })
@@ -542,6 +580,7 @@ const CheckoutPage = (props: DIProps) => {
         totalCartAmount: parseFloat(packageData.totalCartAmount),
       });
       if (res?.data) res = res.data;
+      sessionStorage.setItem("new_user", res?.user_registered);
       // Handle successful response
       if (res.razorpayOrderId && res.totalCartAmount) {
         dispatch?.(
@@ -564,7 +603,7 @@ const CheckoutPage = (props: DIProps) => {
               })
             );
             pushToDataLayerWithoutEvent({
-              event: "user_login",
+              event: res?.user_registered ? "user_register" : "user_login",
               user_id: res.userId,
               name: addressData.username || "",
               mobile: redux.auth.mobile,
@@ -577,26 +616,34 @@ const CheckoutPage = (props: DIProps) => {
           }
           localStorage.removeItem("setlogin");
         } else if (res.userId) {
-          dispatch?.(
-            login({
-              authToken: res.userId,
-              mobile: addressData.phone_no,
-              username: addressData.username,
-              countryCode: addressData.phone_code,
-            })
-          );
-          pushToDataLayerWithoutEvent({
-            event: "user_login",
-            user_id: res.userId,
-            name: addressData.username || "",
+          const temp_login_data = JSON.stringify({
+            authToken: res.userId,
             mobile: addressData.phone_no,
-            utm_source: getLocalStorageUtm("utm_source") ?? "",
-            utm_medium: getLocalStorageUtm("utm_medium") ?? "",
-            utm_campaign: getLocalStorageUtm("utm_campaign") ?? "",
-            utm_content: getLocalStorageUtm("utm_content") ?? "",
-            utm_term: getLocalStorageUtm("utm_term") ?? "",
+            username: addressData.username,
+            countryCode: addressData.phone_code,
           });
-          dispatch?.(resetCart({ cart_data: {} }));
+          localStorage.setItem("temp_login", temp_login_data);
+          localStorage.setItem("temp_uid", res.userId);
+          // dispatch?.(
+          //   login({
+          //     authToken: res.userId,
+          //     mobile: addressData.phone_no,
+          //     username: addressData.username,
+          //     countryCode: addressData.phone_code,
+          //   })
+          // );
+          // pushToDataLayerWithoutEvent({
+          //   event: (res?.user_registered)? "user_register": "user_login",
+          //   user_id: res.userId,
+          //   name: addressData.username || "",
+          //   mobile: addressData.phone_no,
+          //   utm_source: getLocalStorageUtm("utm_source") ?? "",
+          //   utm_medium: getLocalStorageUtm("utm_medium") ?? "",
+          //   utm_campaign: getLocalStorageUtm("utm_campaign") ?? "",
+          //   utm_content: getLocalStorageUtm("utm_content") ?? "",
+          //   utm_term: getLocalStorageUtm("utm_term") ?? "",
+          // });
+          // dispatch?.(resetCart({ cart_data: {} }));
         }
 
         // Initiate Razorpay payment
@@ -686,8 +733,10 @@ const CheckoutPage = (props: DIProps) => {
       },
       handler: function (response: any) {
         setCartData(undefined);
+        setPaypalLoader(true);
         setTimeout(() => {
           getTransactionId(userdata?.orderId);
+          dispatch?.(resetCart({ cart_data: {} }));
         }, 2000);
       },
       modal: {
@@ -733,7 +782,25 @@ const CheckoutPage = (props: DIProps) => {
     paymentObject.open();
   };
 
-  const handlePayNow = async (data: any, actions: any) => {
+  const handleRazorPayPaymentNow = async () => {
+    try {
+      const error = validateAll(addressData, setErrors, showAddress, t);
+      setErrors(error[1]);
+      if (!error[0]) {
+        setLoading(false);
+        toast?.show(t("PLZ_FILL_REQ_FIELD"), "error");
+        return;
+      }
+      pushToDataLayerWithoutEvent({
+        ...transformToBeginCheckoutEvent(cartArray),
+        mobile: addressData.phone_no,
+      });
+      await handleRazorpayPayment();
+    } catch (error) {
+      console.error("Payment initiation error:", error);
+    }
+  };
+  const handlePayPalPaymentNow = async (data: any, actions: any) => {
     try {
       const error = validateAll(addressData, setErrors, showAddress, t);
       setErrors(error[1]);
@@ -741,14 +808,10 @@ const CheckoutPage = (props: DIProps) => {
       if (!error[0]) {
         setLoading(false);
         toast?.show(t("PLZ_FILL_REQ_FIELD"), "error");
-        return actions.reject();
+        return;
       }
 
-      if (currency_name === "USD") {
-        return await createPaypalOrder(data, actions);
-      }
-      await handleRazorpayPayment();
-      return actions.reject();
+      return await createPaypalOrder(data, actions);
     } catch (error) {
       console.error("Payment initiation error:", error);
       return actions.reject();
@@ -829,55 +892,38 @@ const CheckoutPage = (props: DIProps) => {
   }, [cartData, addressData]);
 
   const renderPaymentButton = () => {
-    if (currency_name === "USD") {
-      return (
-        <PayPalScriptProvider options={initOptions}>
-          <PayPalButtons
-            style={{
-              layout: "vertical",
-              color: "gold",
-              shape: "pill",
-              label: "paypal",
-            }}
-            createOrder={handlePayNow}
-            onApprove={onPaypalApprove}
-            fundingSource="paypal"
-          />
-        </PayPalScriptProvider>
-      );
-    } else {
-      return (
-        <MobileFooter
-          showWhatsapp={false}
-          hideOnScroll={false}
-          button_name={t("PAY_NOW")}
-          left_section={
-            packageData.loading ? (
-              <div>
-                <LoadingSpinner showWord={true} />
-              </div>
-            ) : (
-              <div className="checkout-footerbox">
-                <p className="checkout-footerbox-title">{t("TOTAL_PRICE")}</p>
-                <span
-                  className="checkout-footerbox-price"
-                  translate="no"
-                  key={packageData?.totalCartAmount}
-                >
-                  {currency}
-                  {packageData?.totalCartAmount}/-
-                </span>
-              </div>
-            )
-          }
-          onClick={() => {
-            handlePayNow({}, {});
-          }}
-          loading={loading || packageData.loading}
-        />
-      );
-    }
+    return (
+      <MobileFooter
+        showWhatsapp={false}
+        hideOnScroll={false}
+        button_name={t("PAY_NOW")}
+        left_section={
+          packageData.loading ? (
+            <div>
+              <LoadingSpinner showWord={true} />
+            </div>
+          ) : (
+            <div className="checkout-footerbox">
+              <p className="checkout-footerbox-title">{t("TOTAL_PRICE")}</p>
+              <span
+                className="checkout-footerbox-price"
+                translate="no"
+                key={packageData?.totalCartAmount}
+              >
+                {currency}
+                {packageData?.totalCartAmount}/-
+              </span>
+            </div>
+          )
+        }
+        onClick={() => {
+          handleRazorPayPaymentNow();
+        }}
+        loading={loading || packageData.loading}
+      />
+    );
   };
+
   return (
     <div className="container">
       {paypalLoader ? (
@@ -885,7 +931,7 @@ const CheckoutPage = (props: DIProps) => {
       ) : (
         <>
           {!cartData ? (
-            <FullPageLoader />
+            <CheckoutSkeleton />
           ) : packageData.totalCartAmount == 0 || cartArray?.length == 0 ? (
             <EmptyCartPage />
           ) : (
@@ -921,8 +967,9 @@ const CheckoutPage = (props: DIProps) => {
                 errors={errors}
                 packageData={packageData}
                 cartData={cartData}
+                cartArray={cartArray}
               />
-<div style={{ marginBottom: "100px" }}></div>
+              <div style={{ marginBottom: "100px" }}></div>
               {/* <div style={{ marginBottom: "100px" }}>
                 <RecommendedChadhavaListing
                   addedToCart={getCartData}
@@ -951,7 +998,21 @@ const CheckoutPage = (props: DIProps) => {
                       </div>
                     )
                   }
-                  right_section={renderPaymentButton()}
+                  right_section={
+                    <PayPalScriptProvider options={initOptions}>
+                      <PayPalButtons
+                        style={{
+                          layout: "vertical",
+                          color: "gold",
+                          shape: "pill",
+                          label: "paypal",
+                        }}
+                        createOrder={handlePayPalPaymentNow}
+                        onApprove={onPaypalApprove}
+                        fundingSource="paypal"
+                      />
+                    </PayPalScriptProvider>
+                  }
                 />
               ) : (
                 renderPaymentButton()

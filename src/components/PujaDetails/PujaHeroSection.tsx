@@ -4,7 +4,7 @@ import { CalenderIcon, RatingIconYellow, TempleIcon } from "@/assets/svgs";
 import SliderCarousel from "../Common/SliderCarousel";
 import useWindow from "@/customHooks/useWindows";
 import { dummyImages } from "@/commonvaribles/constant_variable";
-import TextTruncator from "../Common/TextTurncate/TextTurncate";
+import ViewerCountBadge from "../Common/ViewerCounter";
 
 interface Props {
   image: any;
@@ -203,6 +203,8 @@ const PujaHeroSection = ({
             <span>{details?.poojaDay ?? ""}</span>
           </div>
         </div>
+
+        <ViewerCountBadge minCount={400} maxCount={15000} intervalMs={2000} />
 
         <div className="pujadetails-data--horizontal"></div>
         <p className="pujadetails-data--description-heading">{type} Details</p>

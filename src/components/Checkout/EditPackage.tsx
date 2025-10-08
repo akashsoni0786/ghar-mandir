@@ -65,7 +65,6 @@ const EditPackage = (props: Props) => {
   const [activePackage, setActivePackage] = useState<any>(
     editable_data?.package
   );
-  console.log("current_package", current_package);
   const validateData = () => {
     // Check if at least one offering or prasad has count > 0
     const hasValidOfferings = moreOffer.some(
@@ -199,6 +198,7 @@ const EditPackage = (props: Props) => {
           editable_data?.member_package_list?.map((e, idx) => ({
             ...e,
             ...packageList[idx],
+            price: e?.price,
           }))
         );
       } catch (error) {

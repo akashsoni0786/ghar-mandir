@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
   },
   appDir: true,
   clientComponents: ["src/**"],
+    images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "d28wmhrn813hkk.cloudfront.net",
+      },
+    ],
+  },
   reactStrictMode: false,
   webpack: (config, { isServer }) => {
     if (!isServer) {

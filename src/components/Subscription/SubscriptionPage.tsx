@@ -22,7 +22,6 @@ import {
   updateVideo,
 } from "@/store/slices/commonSlice";
 import { formatTimestampToReadableDate } from "@/constants/commonfunctions";
-import { videoSource } from "@/commonvaribles/constant_variable";
 
 const {
   POST: { subscription_getUserSubscription },
@@ -46,7 +45,7 @@ const SubscriptionPage = ({
     if (dispatch) {
       dispatch(
         updateVideo({
-          video_data: videoSource,
+          video_data: redux?.common?.default_videoSource,
         })
       );
     }

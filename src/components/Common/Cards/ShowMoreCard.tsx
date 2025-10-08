@@ -13,7 +13,7 @@ const ShowMoreCard = ({ path, eventData, redux }: Props) => {
 
   return (
     <div
-      className="card-participate"
+      className="card-participate  scrollable-boxes--child"
       style={{
         background: `
         linear-gradient(0deg, rgba(19, 33, 2, 0.5) 30%, rgba(19, 33, 2, 0.2) 60%, rgba(19, 33, 2, 0) 69%),

@@ -21,7 +21,7 @@ import {
   save_event,
 } from "@/constants/eventlogfunctions";
 import useTrans from "@/customHooks/useTrans";
-import { filters, videoSource } from "@/commonvaribles/constant_variable";
+import { filters } from "@/commonvaribles/constant_variable";
 import BannerSkeleton from "@/skeletons/banner/BannerSkeleton";
 import PujaCategorySkeleton from "@/skeletons/puja/PujaCategorySkeleton/PujaCategorySkeleton";
 const {
@@ -52,7 +52,7 @@ const PujaListing = (props: DIProps) => {
           if (dispatch) {
             dispatch(
               updateVideo({
-                video_data: videoSource,
+                video_data: redux?.common?.default_videoSource,
               })
             );
           }
@@ -90,6 +90,7 @@ const PujaListing = (props: DIProps) => {
                   type={"puja"}
                   key={idx}
                   data={val?.poojaDetails}
+                  priority={idx === 0}
                   eventData={() => {
                     const eventbtn = button_event(
                       "Participate Now",
@@ -198,6 +199,7 @@ const PujaListing = (props: DIProps) => {
                         eventParams,
                       ]);
                     }}
+                    listingPage={true}
                   />
                 ))}
             </div>

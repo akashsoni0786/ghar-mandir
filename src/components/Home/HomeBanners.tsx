@@ -4,14 +4,13 @@ import { DIProps } from "@/core/DI.types";
 import { useEffect, useState } from "react";
 import { urlFetchCalls } from "@/constants/url";
 import LittleKrishnaBanner from "../Common/CarouselBanners/LittleKrishna";
-import LoadingSpinner from "../Common/Loadings/LoadingSpinner";
 import {
   button_event,
   pageview_event,
   save_event,
 } from "@/constants/eventlogfunctions";
 import { updateMobFooter, updateVideo } from "@/store/slices/commonSlice";
-import { videoSource } from "@/commonvaribles/constant_variable";
+import BannerSkeleton from "@/skeletons/banner/BannerSkeleton";
 const {
   POST: { categoryPage_getBanners },
 } = urlFetchCalls;
@@ -33,6 +32,7 @@ const HomeBanners = ({ request, redux, dispatch }: DIProps) => {
                 <LittleKrishnaBanner
                   type={"home"}
                   data={val?.poojaDetails}
+                  priority={idx === 0}
                   eventData={() => {
                     const eventbtn = button_event(
                       "Participate Now",
@@ -67,7 +67,7 @@ const HomeBanners = ({ request, redux, dispatch }: DIProps) => {
     if (dispatch) {
       dispatch(
         updateVideo({
-          video_data: videoSource,
+          video_data: redux?.common?.default_videoSource,
         })
       );
 
@@ -83,9 +83,7 @@ const HomeBanners = ({ request, redux, dispatch }: DIProps) => {
   }, []);
 
   return bannerLoad ? (
-    <div className="box-loader">
-      <LoadingSpinner />
-    </div>
+     <BannerSkeleton />
   ) : (
     <CarouselBanner itemList={banners} />
   );

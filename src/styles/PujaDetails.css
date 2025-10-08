@@ -748,6 +748,77 @@
   padding: var(--space-md) 0;
 }
 
+@media (min-width: 1200px) {
+  .scrollable-boxes {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    max-width: 1200px;
+    justify-content: space-between;
+  }
+}
+/* @media (max-width: 1200px) {
+  .scrollable-boxes {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .scrollable-boxes--child:first-child {
+    margin-left: 16px;
+  }
+  .scrollable-boxes--child:last-child {
+    margin-right: 16px;
+  }
+} */
+ /* Desktop / larger screens: 4-column grid */
+.scrollable-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+}
+
+/* Restrict to max 4 columns */
+@media (min-width: 1200px) {
+  .scrollable-boxes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Mobile / smaller screens: horizontal scroll */
+@media (max-width: 1199px) {
+  .scrollable-boxes {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    max-width: max-content;
+  }
+
+  .scrollable-boxes--child {
+    flex: 0 0 auto;
+    min-width: 250px; /* adjust size as needed */
+    scroll-snap-align: start;
+  }
+
+  .scrollable-boxes--child:first-child {
+    margin-left: 16px;
+  }
+
+  .scrollable-boxes--child:last-child {
+    margin-right: 16px;
+  }
+}
+
 /* Desktop - Scroll when more than 3 cards */
 .date-temple-cards.scrollable,
 .date-temple-cards-booking.scrollable {
@@ -993,7 +1064,8 @@
       rgba(0, 0, 0, 0.64) 0%,
       rgba(0, 0, 0, 0.64) 100%
     ),
-    url("https://d28wmhrn813hkk.cloudfront.net/uploads/1757600117857-3s9ign.webp") center center / cover no-repeat;
+    url("https://d28wmhrn813hkk.cloudfront.net/uploads/1757600117857-3s9ign.webp")
+      center center / cover no-repeat;
 }
 
 .banner-title {
@@ -1077,11 +1149,11 @@
     transform: scale(0.8) translateX(22px) translateY(58px);
   }
   .package-box--img-2 {
-    transform: scale(1) translateX(3px) translateY(20px);
+    transform: scale(1) translateX(3px) translateY(32px);
   }
   .package-box--img-3 {
     transform-origin: right center;
-    transform: scale(1) translateX(13px) translateY(30px);
+    transform: scale(1) translateX(13px) translateY(46px);
   }
   .package-box--img-4 {
     transform-origin: right center;
@@ -1642,18 +1714,38 @@
 
   .package-box--img-1 {
     transform: scale(0.9) translateX(18px) translateY(8px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .package-box--img-2 {
     transform: scale(1) translateX(20px) translateY(0px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .package-box--img-3 {
     transform-origin: right center;
     transform: scale(1.2) translateX(-7px) translateY(14px);
     z-index: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .package-box--img-4 {
     transform-origin: right center;
     transform: scale(1.6) translateX(10px) translateY(12px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .pujadetails {
     gap: 12px;

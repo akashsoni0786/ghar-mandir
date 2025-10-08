@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -10,6 +10,8 @@ export default function PublicRoute({ children }) {
     if (authToken && authToken != "") {
     } else {
       // setLoginCheck(true);
+      sessionStorage.setItem("showLogin", "true");
+      sessionStorage.setItem("redirectPath", window.location.href);
       router.push("/");
     }
   }, [authToken, router]);

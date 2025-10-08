@@ -1,4 +1,4 @@
-import { videoSource } from "@/commonvaribles/constant_variable";
+
 import { detectLanguage } from "@/utils/languageDetect";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -9,7 +9,9 @@ const initialState = {
   ipaddress: "",
   language: detectLanguage() ?? "en",
   subscriptionData: {},
-  video_data: videoSource,
+  video_data: '',
+  default_videoSource: "",
+  default_thumbnail: "",
 };
 
 const commonSlice = createSlice({
@@ -37,6 +39,10 @@ const commonSlice = createSlice({
     updateVideo: (state, action) => {
       state.video_data = action.payload.video_data;
     },
+    updateDefaultVideo: (state, action) => {
+      state.default_videoSource = action.payload.default_videoSource;
+      state.default_thumbnail = action.payload.default_thumbnail;
+    },
   },
 });
 
@@ -48,6 +54,7 @@ export const {
   updateLanguage,
   updateSubscriptionData,
   updateVideo,
+  updateDefaultVideo,
 } = commonSlice.actions;
 
 export default commonSlice.reducer;

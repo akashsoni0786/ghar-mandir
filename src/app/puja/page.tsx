@@ -1,11 +1,17 @@
 "use client";
-import FullPageLoader from "@/components/Common/Loadings/FullPageLoader";
 import dynamic from "next/dynamic";
 import { PageWrapper } from "../Routes";
+import BannerSkeleton from "@/skeletons/banner/BannerSkeleton";
+import PujaCategorySkeleton from "@/skeletons/puja/PujaCategorySkeleton/PujaCategorySkeleton";
 const PujaComponent = dynamic(
   () => import("../../components/PujaDetails/PujaListing"),
   {
-    loading: () => <FullPageLoader />,
+    loading: () => (
+      <div>
+        <BannerSkeleton />
+        <PujaCategorySkeleton />
+      </div>
+    ),
     ssr: false,
   }
 );

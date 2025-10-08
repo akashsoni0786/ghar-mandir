@@ -8,40 +8,62 @@ import PujaPerform from "./PujaPerform";
 import FAQBox from "./FAQBox";
 import DeevoteeExp from "./DeevoteeExp";
 import Community from "./Community";
+import ScrollAnimate from "@/components/Common/Animation/ScrollAnimate";
 
 const Home = () => {
   return (
     <div>
       <div style={{ margin: "20px 0 20px 0" }}>
-        <HomeBanners />
+        <ScrollAnimate direction="up">
+          <HomeBanners />
+        </ScrollAnimate>
       </div>
-      <div className="container ">
-        <WhyBookUs />
+
+      <div className="container">
+        <ScrollAnimate direction="up">
+          <WhyBookUs />
+        </ScrollAnimate>
         <div className="horizontal-line-gray" />
-        {/* <Blessings />
-        <div className="horizontal-line-gray" /> */}
-        {/* <MostExploredPujas />
-        <div className="horizontal-line-gray" /> */}
-        <PujaEvents />
-        <ChadhavaEvents />
-        <PujaPerform />
+        {/* <Blessings /><MostExploredPujas /> */}
+        <ScrollAnimate direction="up">
+          <PujaEvents />
+        </ScrollAnimate>
+
+        <ScrollAnimate direction="up">
+          <ChadhavaEvents />
+        </ScrollAnimate>
+
+        <ScrollAnimate direction="up">
+          <PujaPerform />
+        </ScrollAnimate>
+
         <div className="horizontal-line-gray" />
       </div>
-      {/* <Advisors /> */}
-      <div className="container ">
-        {/* <div className="horizontal-line-gray" /> */}
-        <FAQBox />
-        {/* <div className="horizontal-line-gray" /> */}
-        <DeevoteeExp />
+
+      <div className="container">
+        <ScrollAnimate direction="up">
+          <FAQBox />
+        </ScrollAnimate>
+
+        <ScrollAnimate direction="up">
+          <DeevoteeExp />
+        </ScrollAnimate>
         <div className="horizontal-line-gray" />
       </div>
-      <Community />
-      <div className="container ">
+
+      <ScrollAnimate direction="up">
+        <Community />
+      </ScrollAnimate>
+
+      <div className="container">
         <div className="ph-16">
-          <SpiritualGuidanceBanner />
+          <ScrollAnimate direction="up">
+            <SpiritualGuidanceBanner />
+          </ScrollAnimate>
         </div>
       </div>
     </div>
   );
 };
+
 export default Home;

@@ -61,12 +61,12 @@ export const validatePhone = (
   // Validate phone number length
   if (phoneLength < minLength) {
     return (
-      t("PHN_TOO_SHORT") || `Phone number must be at least ${minLength} digits`
+      `Phone number must be at least ${minLength} digits`
     );
   }
   if (phoneLength > maxLength) {
     return (
-      t("PHN_TOO_LONG") || `Phone number cannot exceed ${maxLength} digits`
+       `Phone number cannot exceed ${maxLength} digits`
     );
   }
 

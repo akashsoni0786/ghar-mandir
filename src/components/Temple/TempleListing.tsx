@@ -72,6 +72,7 @@ const PujaListing = (props: DIProps) => {
                 <LittleKrishnaBanner
                   type={"puja"}
                   data={val?.poojaDetails}
+                  priority={idx === 0}
                 />
               );
             });

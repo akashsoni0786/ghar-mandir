@@ -27,7 +27,7 @@ import AlertBox from "../Common/AlertBox/AlertBox";
 import useTrans from "@/customHooks/useTrans";
 
 const {
-  POST: { pooja_city },
+  POST: { pooja_city, leads_addLead },
 } = urlFetchCalls;
 
 interface AddressData {
@@ -57,6 +57,7 @@ interface AddressProps extends DIProps {
   packageData: any;
   showAddress: boolean;
   cartData: any;
+  cartArray?: any;
 }
 
 const Address = (props: AddressProps) => {
@@ -71,6 +72,7 @@ const Address = (props: AddressProps) => {
     toast,
     cartData,
     redux,
+    cartArray,
   } = props;
   const currency = getSign();
   const currency_name = getCurrencyName();
@@ -85,6 +87,21 @@ const Address = (props: AddressProps) => {
       fetchCityState(debouncedPincode);
     }
   }, [debouncedPincode]);
+  const debouncedName = useDebounce(userData?.username, 3000);
+  const debouncedMonNo = useDebounce(userData?.phone_no, 3000);
+  
+  useEffect(() => {
+    const mobCheck = validatePhone(debouncedMonNo, userData?.phone_code, t);
+    if (
+      !mobCheck &&
+      (!redux?.auth?.authToken || redux?.auth?.authToken == "")
+    ) {
+      handleLeadData(
+        debouncedName,
+        `${userData?.phone_code}-${debouncedMonNo}`
+      );
+    }
+  }, [debouncedName, debouncedMonNo, userData?.phone_code]);
 
   const fetchCityState = async (pincode: string) => {
     setLoading(true);
@@ -113,7 +130,17 @@ const Address = (props: AddressProps) => {
         setLoading(false);
       });
   };
-
+  const handleLeadData = async (name: string, mobileNumber: string) => {
+    request
+      ?.POST?.(leads_addLead, {
+        mobileNumber: mobileNumber,
+        userName: name,
+        cart: cartArray,
+      })
+      .catch((error: any) => {
+        console.error("Lead data issue : ", error);
+      });
+  };
   const addMember = () => {
     const checkType = needOfNormalNames(cartData);
     const currentCount = Object.keys(userData?.members ?? {}).length;
@@ -122,7 +149,6 @@ const Address = (props: AddressProps) => {
     if (currentCount >= packageLimit && checkType == 2) {
       return; // Don't allow adding more than package limit
     }
-
     const id = generateId();
     const tempData = structuredClone(userData);
     tempData.members[id] = "";
@@ -158,7 +184,6 @@ const Address = (props: AddressProps) => {
       },
     }));
   };
-
   const removePitru = (id: string) => {
     const checkType = needOfPitruNames(cartData);
     const packageType = userData?.pitruNames;
@@ -203,27 +228,6 @@ const Address = (props: AddressProps) => {
   };
 
   useEffect(() => {
-    if (
-      Object.keys(userData.members)?.length &&
-      Object.keys(userData.members)?.length > (packageData?.member ?? 1) &&
-      cartData.Puja?.length > 0
-    ) {
-      const count = packageData?.member ?? 1;
-      const tempData = structuredClone(userData);
-      tempData["members"] = trimObjectToCount(tempData.members, count);
-      setUserdata(tempData);
-
-      setErrors((prev: any) => {
-        const newErrors = trimObjectToCount(prev?.members, count);
-        return {
-          ...prev,
-          members: newErrors,
-        };
-      });
-    }
-  }, [packageData]);
-
-  useEffect(() => {
     const result = needOfPitruNames(cartData);
     const normalRes = needOfNormalNames(cartData);
     setCheckNormalName(normalRes);
@@ -236,7 +240,6 @@ const Address = (props: AddressProps) => {
 
     setCheckOnlyPitruName(needForMemberAndPitruNames(cartData));
   }, [cartData]);
-
   return (
     <div className="checkout-userData">
       {/* Whatsapp number Section */}
@@ -364,7 +367,6 @@ const Address = (props: AddressProps) => {
                 : "Pitru Names"}
             </h4>
             <p className="checkout-userData--member-subheading">
-               
               Seva will be performed for pitru names
             </p>
           </div>

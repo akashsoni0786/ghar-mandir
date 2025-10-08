@@ -18,9 +18,15 @@ import "../../Bookings/ViewBooking.css";
 interface Props {
   devineExperience: any;
   componentType?: string;
+  onPlayVideo?: (link) => void;
 }
-const templeThumbnail = "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600524685-sw0ke.webp";
-const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
+const templeThumbnail =
+  "https://d28wmhrn813hkk.cloudfront.net/uploads/1757600524685-sw0ke.webp";
+const VideoSlideWithMsg = ({
+  devineExperience,
+  componentType,
+  onPlayVideo,
+}: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
@@ -177,7 +183,34 @@ const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
     // Return original URL if no match found
     return url;
   };
-  return (devineExperience.length> 0 ?
+  function getDriveVideoUrl(
+    link: string,
+    type: "preview" | "download" = "preview"
+  ): string {
+    const match = link.match(/\/d\/([^/]+)\//);
+    if (!match) return "";
+
+    const fileId = match[1];
+
+    if (type === "download") {
+      // This one gives a download link (may show virus warning for large files)
+      return `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
+
+    // Default: Google’s inline preview player (plays video inside iframe)
+    return `https://drive.google.com/file/d/${fileId}/preview`;
+  }
+  function getDriveImageUrl(link: string): string {
+    const match = link.match(/\/d\/([^/]+)\//);
+    if (!match) return "";
+
+    const fileId = match[1];
+
+    // Direct image link (can be used in <img src="...">)
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+
+  return devineExperience.length > 0 ? (
     <div className="date-temple-container">
       <div className="date-temple-cards-booking ph-1">
         {devineExperience.map((card, index) => (
@@ -202,7 +235,9 @@ const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
                     className="play-button"
                     onClick={() => {
                       handlePlayClick();
-                      setVideoData(card?.videoUrl);
+                      setVideoData(getDriveVideoUrl(card?.videoUrl));
+                      if (onPlayVideo)
+                        onPlayVideo(card?.videoUrl);
                     }}
                   >
                     <PlayButtonSvg className="play-icon" />
@@ -211,10 +246,29 @@ const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
               </div>
             </div>
 
-            <div style={{marginTop:"4px"}}>
-              <p className="booking-view--box-thumbnail-msg">
-                {card?.text ?? ""}
-              </p>
+            {/* {card?.text && card?.text != "" && (
+              <div style={{ marginTop: "4px" }}>
+                <p className="booking-view--box-thumbnail-msg">
+                  {card?.text ?? ""}
+                </p>
+              </div>
+            )} */}
+            <div style={{ padding: "4px 0" }}>
+              {card?.sankalpTime && card?.sankalpTime != "" && (
+                <div className="date-temple-card--date">
+                  Sankalp time: {card.sankalpTime}
+                </div>
+              )}
+              {card?.chadhavaTime && card?.chadhavaTime != "" && (
+                <div className="date-temple-card--date">
+                  Mandir Darshan: {card.chadhavaTime}
+                </div>
+              )}
+              {card?.offeringName && card?.offeringName != "" && (
+                <div className="date-temple-card--temple-title">
+                  Your Offerings: {card.offeringName}
+                </div>
+              )}
             </div>
           </span>
         ))}
@@ -230,7 +284,7 @@ const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
             width: size.width,
             height: size.height,
             position: "fixed",
-            zIndex:"10000000000"
+            zIndex: "10000000000",
           }}
         >
           <iframe
@@ -251,7 +305,9 @@ const VideoSlideWithMsg = ({ devineExperience, componentType }: Props) => {
           <div className="resize-handle" onMouseDown={handleResize}></div>
         </div>
       )}
-    </div>:<></>
+    </div>
+  ) : (
+    <></>
   );
 };
 

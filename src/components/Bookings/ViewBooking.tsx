@@ -20,10 +20,17 @@ import { pageview_event, save_event } from "@/constants/eventlogfunctions";
 import ZeroResponse from "../NoDataComponents/ZeroResponse";
 import useTrans from "@/customHooks/useTrans";
 import BookingReview from "../ReviewPage/BookingReview";
+import { updateVideo } from "@/store/slices/commonSlice";
 const {
   POST: { bookings_getBookingsById },
 } = urlFetchCalls;
-const ViewBooking = ({ request, redux, location, toast }: DIProps) => {
+const ViewBooking = ({
+  request,
+  redux,
+  location,
+  toast,
+  dispatch,
+}: DIProps) => {
   const t = useTrans(redux?.common?.language);
   const [show, setShow] = useState(false);
   const router = useRouter();
@@ -62,6 +69,13 @@ const ViewBooking = ({ request, redux, location, toast }: DIProps) => {
         });
     }
   };
+  if (dispatch) {
+    dispatch(
+      updateVideo({
+        video_data: undefined,
+      })
+    );
+  }
   useEffect(() => {
     if (booking_id) {
       fetchData();
@@ -141,7 +155,15 @@ const ViewBooking = ({ request, redux, location, toast }: DIProps) => {
                     <span>{t("AD_ONS")}:</span> {packagedata.addons}
                   </p>
                 )}
-                <div className="horizontal-line-gray" />
+
+                {packagedata.addons ||
+                (packagedata.family_package &&
+                  packagedata.family_package != "") ? (
+                  <div className="horizontal-line-gray" />
+                ) : (
+                  <></>
+                )}
+
                 {packagedata.date && (
                   <p className="booking-view--hero-card-data">
                     <span>{t("DATE")}:</span> {packagedata.date}
@@ -155,6 +177,11 @@ const ViewBooking = ({ request, redux, location, toast }: DIProps) => {
                 {packagedata.tithi && (
                   <p className="booking-view--hero-card-data">
                     <span>{t("TITHI")}:</span> {packagedata.tithi}
+                  </p>
+                )}
+                {packagedata.userName && (
+                  <p className="booking-view--hero-card-data">
+                    <span>{"Your Name"}:</span> {packagedata.userName}
                   </p>
                 )}
               </div>

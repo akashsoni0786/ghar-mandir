@@ -89,7 +89,7 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
       });
       // trackPurchase(response?.order_id);
     } else {
-      router.push("../puja");
+      router.push("../bookings");
     }
     const eventParams = pageview_event("Payment Confirmation", {
       order_id: redux.order.order_data?.order_id ?? "",
@@ -97,7 +97,7 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
     });
     save_event(redux?.auth?.authToken, "Payment Confirmation", [eventParams]);
   }, [redux.order.order_data, redux?.common?.transactionId]);
- 
+
   return redux.order.order_data?.order_id ? (
     <div className="confirmation-container">
       <div>
@@ -116,8 +116,12 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
           {Object.keys(data).map((item: any) => {
             return (
               <div className="detail-row" key={item} translate="no">
-                <span className="detail-label" translate="no">{item}</span>
-                <span className="detail-value" translate="no">{data[item]}</span>
+                <span className="detail-label" translate="no">
+                  {item}
+                </span>
+                <span className="detail-value" translate="no">
+                  {data[item]}
+                </span>
               </div>
             );
           })}
@@ -141,10 +145,10 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
               dispatch(transactionIdUpdate({ transactionId: "" }));
               dispatch(updateTotalAmount({ total_amount: 0 }));
             }
-
-            window.location.href = "https://gharmandir.in/";
+            router.push("../bookings");
+            // window.location.href = "https://gharmandir.in/";
           }}
-          children="Book more seva"
+          children="See Bookings"
           isLoading={loading}
         />
       </div>

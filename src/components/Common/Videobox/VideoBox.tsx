@@ -6,7 +6,9 @@ import { DIProps } from "@/core/DI.types";
 import { Minimize, X } from "react-feather";
 
 const VideoBox = ({ redux }: DIProps) => {
-  const ThumbnailImg = 'https://d28wmhrn813hkk.cloudfront.net/uploads/1757599270021-xh3oep.webp';
+  const ThumbnailImg =
+    redux?.common?.default_thumbnail ??
+    "https://d28wmhrn813hkk.cloudfront.net/uploads/1757599270021-xh3oep.webp";
   const { width } = useWindow();
   const [isVisible, setIsVisible] = useState(
     (sessionStorage.getItem("video") ?? "") != "hidden"

@@ -728,5 +728,5 @@ export const HINDI_LANG: Record<string, string> = {
 //   WE_ARE_LOOKING_HEADING: "हम साथी निर्माताओं की तलाश में हैं",
 //   WE_ARE_LOOKING_SUBHEADING:
 //     "यदि आप भारत के तेजी से बढ़ते डिवोशन-टेक क्षेत्र में प्रभाव बनाने के लिए प्रेरित हैं, तो संपर्क करें:",
-//   HIRING_EMAIL: "recruit@gharmandir.in",
+//   HIRING_EMAIL: "recruitment@gharmandir.in",
 // };

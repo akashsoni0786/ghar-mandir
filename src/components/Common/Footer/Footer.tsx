@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Gharmandir_Logo,
   InstagramIcon,
@@ -14,20 +14,23 @@ import { DI } from "@/core/DependencyInjection";
 import { DIProps } from "@/core/DI.types";
 import { useRouter } from "next/navigation";
 import useTrans from "@/customHooks/useTrans";
+import Login from "@/components/Login/Login";
 
 const {
   SHARE_LINKS: { instagram, facebook, whatsapp, privacy_policy },
 } = urlFetchCalls;
 
 const Footer = ({ redux, location }: DIProps) => {
+  const [loginCheck, setLoginCheck] = useState(false);
   const t = useTrans(redux?.common?.language);
   const { width } = useWindow();
   const route = useRouter();
+  const login_check = ["My Bookings"];
 
   const hrefLinks = [
     { title: t("PUJA"), path: "/puja" },
     { title: t("CHADHAVA"), path: "/chadhava" },
-    // { title: "VIP Puja", path: "/vip_puja" },
+    { title: "My Bookings", path: "../bookings" },
     { title: t("CONTACT_US"), path: "../contact-us" },
     // { title: "About Us", path: "/about" },
     // { title: "View Templates", path: "/temple" },
@@ -36,6 +39,11 @@ const Footer = ({ redux, location }: DIProps) => {
 
   return (
     <footer className="footer">
+      <Login
+        setLoginCheck={setLoginCheck}
+        showPopup={loginCheck}
+        hideName={true}
+      />
       <span style={{ pointerEvents: "none" }}>
         <FooterBgSVG className="footer-bg" />
       </span>
@@ -95,7 +103,18 @@ const Footer = ({ redux, location }: DIProps) => {
                   <li
                     key={idx}
                     className="footer-upper--right--links--list-item cursor-pointer"
-                    onClick={() => route.push(href.path)}
+                    onClick={() => {
+                      if (
+                        (login_check.includes(href.title) &&
+                          redux.auth.authToken &&
+                          redux.auth.authToken != "") ||
+                        !login_check.includes(href.title)
+                      ) {
+                        route.push(href.path);
+                      } else {
+                        setLoginCheck(true);
+                      }
+                    }}
                   >
                     <p className="footer-upper--right--link cursor-pointer">
                       {href.title}
@@ -137,7 +156,16 @@ const Footer = ({ redux, location }: DIProps) => {
                     key={idx}
                     className="footer-upper--right--links--list-item cursor-pointer"
                     onClick={() => {
-                      route.push(item.path);
+                      if (
+                        (login_check.includes(item.title) &&
+                          redux.auth.authToken &&
+                          redux.auth.authToken != "") ||
+                        !login_check.includes(item.title)
+                      ) {
+                        route.push(item.path);
+                      } else {
+                        setLoginCheck(true);
+                      }
                       save_event(redux.auth.authToken, location ?? "Home", [
                         button_event(item.title, "Footer:tab switching"),
                       ]);
@@ -157,7 +185,17 @@ const Footer = ({ redux, location }: DIProps) => {
                     key={idx}
                     className="footer-upper--right--links--list-item cursor-pointer"
                     onClick={() => {
-                      route.push(item.path);
+                      if (
+                        (login_check.includes(item.title) &&
+                          redux.auth.authToken &&
+                          redux.auth.authToken != "") ||
+                        !login_check.includes(item.title)
+                      ) {
+                        alert(item.title);
+                        route.push(item.path);
+                      } else {
+                        setLoginCheck(true);
+                      }
                       save_event(redux.auth.authToken, location ?? "Home", [
                         button_event(item.title, "Footer:tab switching"),
                       ]);

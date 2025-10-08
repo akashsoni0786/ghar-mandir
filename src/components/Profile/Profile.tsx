@@ -24,7 +24,6 @@ import {
 import useTrans from "@/customHooks/useTrans";
 import { pushToDataLayerWithoutEvent } from "@/lib/gtm";
 import { updateVideo } from "@/store/slices/commonSlice";
-import { videoSource } from "@/commonvaribles/constant_variable";
 import { updateProfileImage } from "@/store/slices/authSlice";
 
 const {
@@ -289,7 +288,7 @@ const Profile = ({ request, toast, redux, location, dispatch }: DIProps) => {
     if (dispatch) {
       dispatch(
         updateVideo({
-          video_data: videoSource,
+          video_data: redux?.common?.default_videoSource,
         })
       );
     }

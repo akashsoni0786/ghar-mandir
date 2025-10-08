@@ -189,7 +189,10 @@ const Login = ({
                     countryCode: formData?.phone_code,
                   })
                 );
-                if (setLoginCheck) setLoginCheck(false);
+                if (setLoginCheck) {
+                  sessionStorage.setItem("showLogin", "false");
+                  setLoginCheck(false);
+                }
                 if (location == "/checkout") window.location.reload();
               }
             } else if (res?.authToken) {
@@ -226,6 +229,7 @@ const Login = ({
         .then((res: any) => {
           toast?.show(res?.message, res?.success ? "success" : "error");
           if (res?.success) {
+            const redirectUrl = sessionStorage.getItem("redirectPath");
             if (dispatch) {
               dispatch(
                 login({
@@ -260,8 +264,15 @@ const Login = ({
                   },
                 })
               );
-              if (location == "/checkout") window.location.reload();
-              if (setLoginCheck) setLoginCheck(false);
+              if (redirectUrl) {
+                window.location.href = redirectUrl;
+                sessionStorage.removeItem("redirectPath");
+              }
+                if (location == "/checkout") window.location.reload();
+              if (setLoginCheck) {
+                sessionStorage.setItem("showLogin", "false");
+                setLoginCheck(false);
+              }
             }
           }
         })
@@ -291,7 +302,10 @@ const Login = ({
         position={width > 480 ? "center" : "bottom"}
         isEscape={true}
         onClose={() => {
-          if (setLoginCheck) setLoginCheck(false);
+          if (setLoginCheck) {
+            sessionStorage.setItem("showLogin", "false");
+            setLoginCheck(false);
+          }
         }}
       >
         <div className="login-container">

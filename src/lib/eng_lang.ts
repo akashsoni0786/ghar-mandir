@@ -376,5 +376,5 @@ export const ENGLISH_LANG: Record<string, string> = {
   WE_ARE_LOOKING_HEADING: "We are looking for fellow builders",
   WE_ARE_LOOKING_SUBHEADING:
     "If you're driven to make an impact in India's fast-growing devotion-tech space, reach out:",
-  HIRING_EMAIL: "recruit@gharmandir.in",
+  HIRING_EMAIL: "recruitment@gharmandir.in",
 };

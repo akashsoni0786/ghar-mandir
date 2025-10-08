@@ -177,8 +177,6 @@ export const language_short = {
   en: "En",
   hi: "हि",
 };
-export const videoSource =
-  "https://pub-ba14b4c37ea646818adce514a4415c89.r2.dev/videos/1757060559260-we97ni-1756957434853_Pranjal+Ghar+Mandir_1.mp4";
 export const dummyImages = [
   "https://c4.wallpaperflare.com/wallpaper/741/711/759/krishna-hindu-gods-bhagwan-vishnu-narayan-hd-wallpaper-preview.jpg",
 ];

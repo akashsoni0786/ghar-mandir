@@ -8,12 +8,20 @@ import useTrans from "@/customHooks/useTrans";
 import { DI } from "@/core/DependencyInjection";
 import { DIProps } from "@/core/DI.types";
 import { Tooltip } from "antd";
+import Image from "next/image";
 interface Props extends DIProps {
   data?: any;
   type?: any;
   eventData?: any;
+  priority?: boolean;
 }
-const LittleKrishnaBanner = ({ data, type, eventData, redux }: Props) => {
+const LittleKrishnaBanner = ({
+  data,
+  type,
+  eventData,
+  redux,
+  priority,
+}: Props) => {
   const t = useTrans(redux?.common?.language);
   const { width } = useWindow();
   const route = useRouter();
@@ -113,11 +121,11 @@ const LittleKrishnaBanner = ({ data, type, eventData, redux }: Props) => {
               </div>
             )}
           </div>
-          {<div className="horizontal-line vertical-gap"></div>}
+          {<div className="horizontal-line"></div>}
           {
             <div style={{ width: "300px" }}>
               <DarkBgButton
-                children={t("PARTICIPATE_NOW")}
+              size={width<480 ? "small":"medium"}
                 onClick={() => {
                   if (eventData) eventData();
                   setLoading(true);
@@ -128,13 +136,27 @@ const LittleKrishnaBanner = ({ data, type, eventData, redux }: Props) => {
                   } else route.push(`/${type}/${bannerData?.url}`);
                 }}
                 isLoading={loading}
-              />
+              >
+                {t("PARTICIPATE_NOW")}
+              </DarkBgButton>
             </div>
           }
         </div>
 
         <div className="banner-image">
-          <img src={bannerData?.image} alt="Lord Krishna" />
+          {/* <img
+            src={bannerData?.image}
+            alt="Lord Krishna"
+          /> */}
+
+          <Image
+            src={bannerData?.image}
+            alt="Lord Krishna"
+            width={1200}
+            height={800}
+            priority={priority}
+            style={{ width: "100%", height: width>480 ? "370px":"260px", maxHeight: "370.8px" }}
+          />
           <div className="image-gradient-overlay"></div>
         </div>
       </section>

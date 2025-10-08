@@ -11,7 +11,6 @@ import DataNotFound from "@/components/NoDataComponents/DataNotFound";
 import { pushToDataLayerWithoutEvent } from "@/lib/gtm";
 import { DetailsProvider } from "@/components/PujaDetails/PoojaDetailsContext";
 import { pageview_event, save_event } from "@/constants/eventlogfunctions";
-import { videoSource } from "@/commonvaribles/constant_variable";
 import { updateVideo } from "@/store/slices/commonSlice";
 import PujaDetailsSkeleton from "../../../skeletons/puja/PujaDetailsSkeleton/PujaDetailsSkeleton";
 const {
@@ -40,7 +39,7 @@ function Page(props: DIProps) {
               if (res?.data?.[0]?.advertizeVideo) {
                 dispatch(
                   updateVideo({
-                    video_data: res?.data?.[0]?.advertizeVideo ?? videoSource,
+                    video_data: res?.data?.[0]?.advertizeVideo ?? redux?.common?.default_videoSource,
                   })
                 );
               } else {

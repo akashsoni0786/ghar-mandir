@@ -31,8 +31,8 @@ const PujaCategorySkeleton = () => {
       </div>
 
       <div className="listing-cards">
-        {Array.from({ length: 8 }).map((item) => (
-          <div key={item}>
+        {Array.from({ length: 8 }).map((item,idx) => (
+          <div key={idx}>
             <SkeletonBox className="card-participate" height={"400px"} />
           </div>
         ))}

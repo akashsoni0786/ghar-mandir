@@ -12,7 +12,6 @@ import {
   filterResult,
   transformToListingDataLayer,
 } from "@/constants/commonfunctions";
-import LoadingSpinner from "../Common/Loadings/LoadingSpinner";
 import SearchFilterEmpty from "../NoDataComponents/SearchFilterEmpty";
 import { pushToDataLayerWithoutEvent } from "@/lib/gtm";
 import {
@@ -21,10 +20,10 @@ import {
   save_event,
 } from "@/constants/eventlogfunctions";
 import SearchFilter from "../Common/SearchFilter";
-import { filters, videoSource } from "@/commonvaribles/constant_variable";
 import useTrans from "@/customHooks/useTrans";
 import ChadhavaListingSkeleton from "../../skeletons/chadhava/ChadhavaListingSkeleton/ChadhavaListingSkeleton";
 import BannerSkeleton from "@/skeletons/banner/BannerSkeleton";
+import { filters } from "@/commonvaribles/constant_variable";
 const {
   POST: { categoryPage_details, categoryPage_getBanners },
 } = urlFetchCalls;
@@ -59,7 +58,7 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
           if (dispatch) {
             dispatch(
               updateVideo({
-                video_data: videoSource,
+                video_data: redux?.common?.default_videoSource,
               })
             );
           }
@@ -86,6 +85,7 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
             res?.data?.forEach((val: any, idx: number) => {
               data.push(
                 <LittleKrishnaBanner
+                priority={idx === 0}
                   type={"chadhava"}
                   key={idx}
                   data={val?.poojaDetails}
@@ -181,6 +181,7 @@ const ChadhavaListing = ({ dispatch, request, redux }: DIProps) => {
                     key={index}
                     data={item}
                     index={index}
+                    listingPage={true}
                     eventData={() => {
                       const eventbtn = button_event(
                         "Participate Now",
